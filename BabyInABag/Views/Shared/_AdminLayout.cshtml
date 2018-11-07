@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+</head>
+
+<body class="admin-body">
+    <!-- Header -->
+    <div class="admin-top" style="background-color:gray;">
+        <div class="w3-bar w3-white w3-wide w3-padding w3-card" style="min-width: 640px;">
+            <h1 class="w3-bar-item" id="header-text">Baby In A Bag Management</h1>
+            <div id="navbar" style="width:100%; min-width: 752px; position:absolute; bottom:0;" align="center"></div>
+            <div id="topright">
+                <div class="w3-right w3-hide-small">
+                    @*<div class="dropdown">
+                            <button class="w3-bar-item w3-button">Administrator</button>
+                            <div class="dropdown-content">
+                                <a>@Html.ActionLink("Sign Out", "Index", "Home", null, new { style = "text-decoration:none;" })</a>
+                            </div>
+                        </div>*@
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Side Navigation Bar -->
+    <div class="sidenav">
+        <a>@Html.ActionLink("Orders", "Index", "Orders", null, new { style = "text-decoration:none;" })</a>
+        <a>@Html.ActionLink("Reports", "Reports", "Admin", null, new { style = "text-decoration:none;" })</a>
+        <a></a>
+        <button class="dropdown-btn">
+            Products
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a>@Html.ActionLink("Add Product", "AddProduct", "Admin", null, new { style = "text-decoration:none;" })</a>
+            <a>@Html.ActionLink("Manage Products", "ManageProducts", "Admin", null, new { style = "text-decoration:none;" })</a>
+            <a>@Html.ActionLink("Manage Category", "Index", "ProductCategories", null, new { style = "text-decoration:none;" })</a>
+        </div>
+        <a>@Html.ActionLink("Accounts", "Accounts", "Admin", null, new { style = "text-decoration:none;" })</a>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    <script>
+/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }</script>
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

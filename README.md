@@ -1,2 +1,0 @@
-# DemoBabyInABag
-Main Project

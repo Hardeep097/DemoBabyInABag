@@ -1,0 +1,60 @@
+﻿@using BabyInABag.Models
+@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "ManageProducts";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+    <!-- Contents -->
+    <div class="main-contents">
+        <!-- Panel -->
+        <div class="main">
+
+            <!--<table class="w3-table w3-bordered w3-hoverable">-->
+            <table class="w3-table" style="font-size:14px;">
+                <tr style="border-bottom: 1px solid black; font-size:16px;">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product_Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product_Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product_Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Active)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Products", new { id = item.Product_Id }, null)
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+        <!-- End of Panel -->
+    </div>
+    <!-- End of Contents -->
+
+   

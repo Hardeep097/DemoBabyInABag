@@ -1,0 +1,254 @@
+﻿using BabyInABag.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.Mvc;
+using BabyInABag.Models.VMs;
+using System.Text.RegularExpressions;
+
+
+namespace BabyInABag.Controllers
+{
+    public class OrdersController : Controller
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        // GET: Orders
+        public ActionResult Index()
+        {
+            return View(db.Orders.ToList());
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = db.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
+
+        // GET: Orders/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = db.Orders.Find(id);
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
+            return View(order);
+        }
+
+        // POST: Orders/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id")] Order order)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(order).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
+            return View(order);
+        }
+
+        public ActionResult Checkout()
+        {
+            if (Session["cart"] == null)
+            {
+                ViewBag.empty = "Your cart is empty";
+            }
+            else
+            {
+                List<CartItem> currentCart = (List<CartItem>)Session["cart"];
+                List<Product> activeCart = new List<Product>();
+                List<Product> products = new List<Product>();
+                decimal subtotalPrice = 0;
+                int subtotalAmount = 0;
+
+                products = db.Products.ToList();
+
+                for (int c = 0; c < products.Count; c++)
+                {
+                    for (int d = 0; d < currentCart.Count; d++)
+                    {
+                        if (products[c].Product_Id.Equals(currentCart[d].ProductID))
+                        {
+                            products[c].Quantity = currentCart[d].Quantity;
+                            activeCart.Add(products[c]);
+
+                            for (int i = 0; i < products[c].Quantity; i++)
+                            {
+                                subtotalPrice += products[c].Product_Price;
+                                subtotalAmount++;
+                            }
+
+                        }
+                    }
+                }
+                ViewBag.Subtotal = "Subtotal (" + subtotalAmount + " item): CDN$ " + subtotalPrice;
+                return View(activeCart);
+            }
+            return View();
+        }
+
+        // POST: Orders/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public void Create(Order order)
+        {
+            string username = (string)Session["username"];
+            string customer_id = null;
+            List<ApplicationUser> customers = db.Users.ToList();
+            for (int i = 0; i < customers.Count; i++)
+            {
+                if (customers[i].UserName == username)
+                {
+                    customer_id = customers[i].Id;
+                }
+            }
+
+            //Order order = new Order();
+            order.Id = customer_id;
+            order.Products = getCartProducts();
+            order.Order_Status = order_status.Submitted;
+            order.Order_Date_Placed = System.DateTime.Now;
+
+
+            if (ModelState.IsValid)
+            {
+                db.Orders.Add(order);
+                db.SaveChanges();
+            }
+
+        }
+
+
+        public List<Product> getCartProducts()
+        {
+            List<CartItem> currentCart = (List<CartItem>)Session["cart"];
+            List<Product> activeCart = new List<Product>();
+            List<Product> products = new List<Product>();
+
+            products = db.Products.ToList();
+
+            for (int c = 0; c < products.Count; c++)
+            {
+                for (int d = 0; d < currentCart.Count; d++)
+                {
+                    if (products[c].Product_Id.Equals(currentCart[d].ProductID))
+                    {
+                        activeCart.Add(products[c]);
+                    }
+                }
+            }
+
+            return activeCart;
+        }
+
+        public ActionResult Payment()
+        {
+            return View();
+        }
+
+        public string GenerateOrderNumber()
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, 10).Select(s => s [random.Next(s.Length)]).ToArray());
+        }
+
+        public ActionResult GetPayPalData()
+        {
+            //POST Response to PayPal with TX token, pull Order Response for SUCCESS or FAIL payment
+            var getData = new GetPayPalData();
+            string response = getData.GetPayPalResponse(Request.QueryString["tx"]);
+
+            Regex payment_success_rgx = new Regex(@"SUCCESS");
+            if (payment_success_rgx.Match(response).ToString().Equals("SUCCESS"))
+            {
+
+                //Regex to Parse through decoded response
+                Regex address_name_rgx = new Regex(@"(?<=address_name=).*?(?=\s)");
+                Regex address_street_rgx = new Regex(@"(?<=address_street=).*?(?=\s)");
+                Regex address_city_rgx = new Regex(@"(?<=address_city=).*?(?=\s)");
+                Regex address_country_rgx = new Regex(@"(?<=address_country=).*?(?=\s)");
+                Regex address_state_rgx = new Regex(@"(?<=address_state=).*?(?=\s)");
+                Regex address_zip_rgx = new Regex(@"(?<=address_zip=).*?(?=\s)");
+                Regex payment_gross_rgx = new Regex(@"(?<=payment_gross=).*?(?=\s)");
+
+                //Parsed Fields being Decoded
+                string address_street_decoded = HttpUtility.UrlDecode(address_street_rgx.Match(response).ToString());
+                string address_name_decoded = HttpUtility.UrlDecode(address_name_rgx.Match(response).ToString());
+                string address_city_decoded = HttpUtility.UrlDecode(address_city_rgx.Match(response).ToString());
+                string address_country_decoded = HttpUtility.UrlDecode(address_country_rgx.Match(response).ToString());
+                string address_state_decoded = HttpUtility.UrlDecode(address_state_rgx.Match(response).ToString());
+                string address_zip_decoded = HttpUtility.UrlDecode(address_zip_rgx.Match(response).ToString());
+                string payment_gross_decoded = HttpUtility.UrlDecode(payment_gross_rgx.Match(response).ToString());
+
+
+                String shipping_address = address_street_decoded + "\n" +
+                                          address_city_decoded + ", " +
+                                          address_state_decoded + "\n" +
+                                          address_country_decoded + ", " +
+                                          address_zip_decoded;
+
+                Order order = new Order
+                {
+                    Shipping_Address = shipping_address,
+                    Full_Name = address_name_decoded,
+                    Order_Total = Convert.ToDecimal(payment_gross_decoded),
+                    Order_Number = GenerateOrderNumber()
+
+
+                };
+
+                Create(order);
+                ViewBag.OrderNumber = order.Order_Number;
+
+                ViewBag.status_message = "Your Payment was Successful!";
+
+            }
+            else
+            {
+                ViewBag.status_message = "Your Payment didnt go through!";
+            }
+
+            return View();
+        }
+
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+    }
+
+
+}

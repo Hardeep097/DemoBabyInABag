@@ -1,0 +1,19 @@
+﻿@using BabyInABag.Models
+@using System.Configuration
+@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "GetPayPalData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="text-align:center">
+
+    <h2 >Thank you for your Payment!</h2>
+    
+        <img src="~/images/checkmark_success.gif" />
+        
+    <hr />
+    <h2><b>Your order number is:</b></h2><p>@ViewBag.OrderNumber</p>
+    <p>To view your order, Please @Html.ActionLink("Click here", "", "", new { Style = "text-decoration: underline; color:Blue;" })</p>
+</div>
+

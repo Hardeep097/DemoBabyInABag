@@ -1,0 +1,63 @@
+﻿@using BabyInABag.Models
+@model IEnumerable<Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Contents -->
+<div class="main-contents">
+    <!-- Panel -->
+    <div class="main">
+
+        <!--<table class="w3-table w3-bordered w3-hoverable">-->
+        <table class="w3-table" style="font-size:14px;">
+            <tr style="border-bottom: 1px solid black; font-size:16px;">
+                <th>
+                    @Html.DisplayNameFor(model => model.Order_Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order_Date_Placed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Order_Status)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Order_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Customer.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Order_Date_Placed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Order_Status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Orders", new { id = item.Order_Id }, null)
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+    <!-- End of Panel -->
+</div>
+<!-- End of Contents -->

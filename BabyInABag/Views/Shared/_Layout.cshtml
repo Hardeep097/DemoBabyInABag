@@ -1,0 +1,221 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Baby In A Bag</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="images/favicon.png">
+    <!-- Font Burger jQuery -->
+    <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <!-- Mine -->
+    <script src="~/Scripts/myscripts.js"></script>
+    <link href="~/Styles/styleMain.css" rel="stylesheet" />
+    <link href="~/Styles/styleContent.css" rel="stylesheet" />
+    <script>
+
+        //Navigation Bar User Dropdown Button
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /*Header*/
+        .dropbtn {
+            display: block;
+            text-align: right;
+            font-size: 16px;
+            text-decoration: none;
+            border: 1px solid #111;
+
+            padding: 0 20px;
+            line-height: 38px;
+            cursor: pointer;
+            color: #007bff;
+        }
+
+            .dropbtn:hover, .dropbtn:focus {
+                color: #0062cc;
+            }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+
+        .dropdown-content {
+            display: none;
+            /*position: absolute;*/
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+
+        @@media only screen and (min-width: 1000px) { /*Desktop mode:overrides when condition meets*/
+    .dropdown {
+        float: right;
+    }
+
+    .dropbtn {
+        font-weight: 900;
+        margin-right: 10px;
+        margin-top: 30px;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+ 
+    <header>
+        <div class="wrapper">
+            <i class="menu-trigger-left fas fa-bars"></i>
+            <!-- <i class="menu-trigger-right fas fa-bars"></i> -->
+            <a href="@Url.Action("Index", "Home")" class="header-brand">Baby In A Bag</a>
+            <div class="nav-menu">
+                <nav>
+                    <ul>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Products", "Products", "Products")</li>
+                        <li>@Html.ActionLink("FAQ", "FAQ", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    <div class="nav-menu2">
+                        @*@Html.Partial("_LoginPartial")*@
+
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+
+                                @Html.AntiForgeryToken()
+
+                                if (Session["name"] != null)
+                                {
+                                    <a href="@Url.Action("Cart", "Cart")" class="header-cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+                                    <div class="dropdown">
+                                        <div onclick="myFunction()" class="dropbtn"> Hello @Session["name"].ToString()! <i class="fa fa-caret-down"></i></div>
+                                        <div id="myDropdown" class="dropdown-content">
+                                            <a href="@Url.Action("Index", "Manage")">Profile Setting</a>
+                                            <a href="#orders">Orders</a>
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+
+                                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                  
+                                }
+                            }
+
+                        }
+                        else
+                        {
+
+                            <a href="@Url.Action("Cart", "Cart")" class="header-cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+                            <a href="@Url.Action("Login", "Account")" class="header-login"><i class="fas fa-user"></i> Login</a>
+
+                        }
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="wrapper">
+                <ul class="footer-subnav">
+                    <hr>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Products", "Products", "Products")</li>
+                    <li>@Html.ActionLink("FAQ", "FAQ", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                <ul class="footer-contact-info">
+                    <hr>
+                    <li>
+                        <p>CONTACT INFORMATION:</p>
+                    </li>
+                    <!--<li><a href="tel:0000000000">â˜Ž(000) 000-000</a></li>-->
+                    <li><a href="mailto:babyinabagbylola@gmail.com?Subject=Babyinabag%20-%20">babyinabagbylola@gmail.com</a></li>
+                </ul>
+                <ul class="footer-copyright">
+                    <hr>
+                    <li>
+                        <p>&copy; Copyright 2018 - SpectZero</p>
+                    </li>
+                </ul>
+                <ul class="footer-social-media">
+                    <a href="https://www.facebook.com/babyinabagbylola/" target="_blank">
+                        <img src="~/images/facebook-icon.png" alt="Facebook Icon" / >
+                    </a>
+                    <a href="https://www.instagram.com/babyinabag/" target="_blank">
+                        <img src="~/images/instagram-icon.png" alt="Instagram Icon" />
+                    </a>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

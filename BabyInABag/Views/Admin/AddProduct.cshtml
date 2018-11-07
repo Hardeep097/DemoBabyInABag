@@ -1,0 +1,100 @@
+﻿@model BabyInABag.Models.ProductCategory
+
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+    <!-- Contents -->
+    <div class="main-contents">
+        <!-- Panel -->
+        <div class="main">
+            <font size="4">
+                <h2 id="admin-header-text">ADD PRODUCT</h2>
+                <label id="admin-header-text" style="color:blue">@Html.ViewBag.psuccess</label>
+                <hr>
+                @using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <!-- Table Content -->
+                    <table align="center">
+                        <tr>
+                            <td>
+                                <p style="margin: 0px;">Name</p>
+                                <input type="text" name="Product_Name" placeholder="Product Name" style="width:100%" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="margin: 0px;">Description</p>
+                                <textarea rows="2" cols="19" name="Product_Description" placeholder="Product Description" style="resize:none; width:100%"></textarea>
+                            <td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <p style="margin: 0px;">Category</p>
+
+                                @*<input id="newchoice"
+                                       name="choice"
+                                       type="radio"
+                                       value="Create new"
+                                       style="width: 10%;height: 1em; margin-right:-10px" />
+                                <label>Create New</label>
+
+                                <input checked="checked"
+                                       id="existchoice"
+                                       name="choice"
+                                       type="radio"
+                                       value="Use existing"
+                                       style="width: 10%;height: 1em; margin-right:-10px" />
+                                <label>Use existing</label>*@
+                                <div id="dropd">
+                                    @Html.DropDownList("Product_Category_Id", new SelectList(ViewBag.data, "Product_Category_Id", "Product_Category"))
+                                </div>
+                                <div id="textb" hidden>
+                                    <input type="text" name="Product_Category_new" placeholder="Product Category" style="width:100%">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p style="margin:0px;">Price</p>
+                                <input type="number" name="Product_Price" placeholder="Product Price" style="width:100%" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                @Html.ViewBag.error
+                                <p style="margin: 0px;">Image</p>
+                                <input type="file" placeholder="Add Description Here" name="ImageFile" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="submit">Save</button>
+                            </td>
+                        </tr>
+                    </table>
+                }
+                @*using end*@
+            </font>
+        </div>
+        <!-- End of Panel -->
+    </div>
+    <!-- End of Contents -->
+ 
+    @*<script>
+        $(document).ready(function () {
+            $("#newchoice").click(function () {
+                $("#textb").show(200);
+                $("#dropd").hide();
+            });
+            $("#existchoice").click(function () {
+                $("#textb").hide(200);
+                $("#dropd").show();
+            });
+        });
+    </script>*@
+
+

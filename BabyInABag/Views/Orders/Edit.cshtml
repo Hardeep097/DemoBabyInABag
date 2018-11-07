@@ -1,0 +1,124 @@
+﻿@using BabyInABag.Models
+@model Order
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <style>
+        table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #7CB342;
+            color: white;
+        }
+    </style>
+</head>
+
+<!-- Contents -->
+<div class="main-contents">
+    <!-- Panel -->
+    <div class="main">
+        @using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Order_Id)
+            @Html.HiddenFor(model => model.Order_Date_Placed)
+            @Html.HiddenFor(model => model.Order_Total)
+            @Html.HiddenFor(model => model.Full_Name)
+            @Html.HiddenFor(model => model.Shipping_Address)
+
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Customer.Id)
+            <font size="4">
+                <h2 id="admin-header-text">MANAGE ORDER</h2>
+                <hr>
+                <!-- Table Content Order ID and Account Information-->
+                <div>
+                    <table style="margin-bottom:10px">
+                        <tr>
+                            <th>Order ID #@Html.DisplayFor(model => model.Order_Id)</th>
+                            <th>Account Information</th>
+                        </tr>
+                        <tr>
+                            <td><p style="margin: 0px;">Order Date: @Html.DisplayFor(model => model.Order_Date_Placed) </p></td>
+                            <td>
+                                @{
+                                    var fullName = Model.Customer.FirstName + " " + Model.Customer.LastName;
+                                    <p style="margin: 0px;">Customer Name: @Html.DisplayFor(model => fullName)</p>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Order Status:
+                                @Html.DropDownListFor(model => model.Order_Status, new SelectList(Enum.GetValues(typeof(order_status))))
+                            </td>
+                            <td><p style="margin:0px;">Email: @Html.DisplayFor(model => model.Customer.Email)</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Table 2 Content Shipping Address and Invoice-->
+                <div>
+                    <table style="margin-bottom:10px">
+                        <tr>
+                            <th>Shipping Address</th>
+                            <th>Invoice</th>
+                        </tr>
+                        <tr>
+                            <td><p style="margin: 0px;">@Html.DisplayFor(model => model.Shipping_Address)</p></td>
+
+                        </tr>
+                    </table>
+                </div>
+                <!-- Table 3 Content Items -->
+                <div>
+                    <table>
+                        <tr>
+                            <th>Items</th>
+                            <th>Size</th>
+                            <th>Price</th>
+                            <th>Qty</th>
+                            <th>Tax</th>
+                            <th>Raw Total</th>
+                        </tr>
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td><p style="margin: 0px;">@Html.DisplayFor(modelItem => item.Product_Name)</p></td>
+                                <td>@Html.DisplayFor(modelItem => item.Product_Price)</td>
+                                <td>1</td>
+                                <td>$0.00</td>
+                                <td>@Html.DisplayFor(modelItem => item.Product_Price)</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <input type="submit" value="Update" class="btn btn-default" />
+                @*<button type="button" onclick="alert('Order Successfully Updated')">Update</button>*@
+            </font>
+        }
+    </div>
+    <!-- End of Panel -->
+</div>
+<!-- End of Contents -->

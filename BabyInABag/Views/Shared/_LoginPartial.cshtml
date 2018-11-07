@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+
+        @Html.AntiForgeryToken()
+
+
+
+        @*<a href="cart.html" class="header-cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+            <a href="login.html" class="header-login"><i class="fas fa-user"></i> Login</a>*@
+
+
+        if (Session["name"] != null)
+        {
+           
+            <div class="dropdown">
+                <div onclick="myFunction()" class="dropbtn"> Hello @Session["name"].ToString()! <i class="fa fa-caret-down"></i></div>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="@Url.Action("Index", "Manage")">Profile Setting</a>
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>                </div>
+            </div>
+
+        }
+        else
+        {
+
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+
+
+
+    }
+
+}
+else
+{
+
+    @*<li>@Html.ActionLink("Cart", "Cart", "Cart", new object { }, new { @class = "w3-bar-item w3-button" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+    <a href="@Url.Action("Login", "Account")" class="header-login"><i class="fas fa-user"></i> Login</a>
+
+}
