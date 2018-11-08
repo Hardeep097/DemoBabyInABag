@@ -80,7 +80,7 @@ namespace BabyInABag.Controllers
 
             }
 
-            ViewBag.success = "Failed!";
+           
             return View();
         }
 

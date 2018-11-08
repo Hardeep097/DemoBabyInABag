@@ -37,6 +37,21 @@ namespace BabyInABag.Controllers
         }
 
         // GET: Orders/Edit/5
+        //public ActionResult Edit(int? ids)
+        //{
+        //    if (ids == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Order order = db.Orders.Find(ids);
+        //    if (order == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    //ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
+        //    return View(order);
+        //}
+
         public ActionResult Edit(int? ids)
         {
             if (ids == null)
@@ -48,7 +63,7 @@ namespace BabyInABag.Controllers
             {
                 return HttpNotFound();
             }
-            //ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
+            
             return View(order);
         }
 
@@ -112,10 +127,42 @@ namespace BabyInABag.Controllers
         // POST: Orders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public void Create(Order order)
+        //{
+        //    string username = (string)Session["username"];
+        //    string customer_id = null;
+        //    List<ApplicationUser> customers = db.Users.ToList();
+        //    for (int i = 0; i < customers.Count; i++)
+        //    {
+        //        if (customers[i].UserName == username)
+        //        {
+        //            customer_id = customers[i].Id;
+        //        }
+        //    }
+
+        //    //Order order = new Order();
+        //    order.Id = customer_id;
+        //    order.Products = getCartProducts();
+        //    order.Order_Status = order_status.Submitted;
+        //    order.Order_Date_Placed = System.DateTime.Now;
+
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Orders.Add(order);
+        //        db.SaveChanges();
+        //    }
+
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public void Create(Order order)
         {
+            //List<Product> activeCart = activeProducts;
+
             string username = (string)Session["username"];
             string customer_id = null;
             List<ApplicationUser> customers = db.Users.ToList();
@@ -129,7 +176,7 @@ namespace BabyInABag.Controllers
 
             //Order order = new Order();
             order.Id = customer_id;
-            order.Products = getCartProducts();
+            order.Products = GetCartProducts();
             order.Order_Status = order_status.Submitted;
             order.Order_Date_Placed = System.DateTime.Now;
 
@@ -139,7 +186,6 @@ namespace BabyInABag.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
             }
-
         }
 
 
@@ -236,7 +282,27 @@ namespace BabyInABag.Controllers
             return View();
         }
 
+        public List<Product> GetCartProducts()
+        {
+            List<CartItem> currentCart = (List<CartItem>)Session["cart"];
+            List<Product> activeCart = new List<Product>();
+            List<Product> products = new List<Product>();
 
+            products = db.Products.ToList();
+
+            for (int c = 0; c < products.Count; c++)
+            {
+                for (int d = 0; d < currentCart.Count; d++)
+                {
+                    if (products[c].Product_Id.Equals(currentCart[d].ProductID))
+                    {
+                        activeCart.Add(products[c]);
+                    }
+                }
+            }
+
+            return activeCart;
+        }
 
 
         protected override void Dispose(bool disposing)
