@@ -113,7 +113,7 @@
 </head>
 
 <body>
- 
+
     <header>
         <div class="wrapper">
             <i class="menu-trigger-left fas fa-bars"></i>
@@ -155,7 +155,7 @@
 
                                     @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
                                     <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-                                  
+
                                 }
                             }
 
@@ -178,41 +178,43 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <div class="wrapper">
-                <ul class="footer-subnav">
-                    <hr>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Products", "Products", "Products")</li>
-                    <li>@Html.ActionLink("FAQ", "FAQ", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                <ul class="footer-contact-info">
-                    <hr>
-                    <li>
-                        <p>CONTACT INFORMATION:</p>
-                    </li>
-                    <!--<li><a href="tel:0000000000">â˜Ž(000) 000-000</a></li>-->
-                    <li><a href="mailto:babyinabagbylola@gmail.com?Subject=Babyinabag%20-%20">babyinabagbylola@gmail.com</a></li>
-                </ul>
-                <ul class="footer-copyright">
-                    <hr>
-                    <li>
-                        <p>&copy; Copyright 2018 - SpectZero</p>
-                    </li>
-                </ul>
-                <ul class="footer-social-media">
-                    <a href="https://www.facebook.com/babyinabagbylola/" target="_blank">
-                        <img src="~/images/facebook-icon.png" alt="Facebook Icon" / >
-                    </a>
-                    <a href="https://www.instagram.com/babyinabag/" target="_blank">
-                        <img src="~/images/instagram-icon.png" alt="Instagram Icon" />
-                    </a>
-                </ul>
-            </div>
-        </footer>
+
     </div>
+
+    <footer>
+        <div class="wrapper">
+            <ul class="footer-subnav">
+                <hr>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Products", "Products", "Products")</li>
+                <li>@Html.ActionLink("FAQ", "FAQ", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            <ul class="footer-contact-info">
+                <hr>
+                <li>
+                    <p>CONTACT INFORMATION:</p>
+                </li>
+                <!--<li><a href="tel:0000000000">â˜Ž(000) 000-000</a></li>-->
+                <li><a href="mailto:babyinabagbylola@gmail.com?Subject=Babyinabag%20-%20">babyinabagbylola@gmail.com</a></li>
+            </ul>
+            <ul class="footer-copyright">
+                <hr>
+                <li>
+                    <p>&copy; Copyright 2018 - SpectZero</p>
+                </li>
+            </ul>
+            <ul class="footer-social-media">
+                <a href="https://www.facebook.com/babyinabagbylola/" target="_blank">
+                    <img src="~/images/facebook-icon.png" alt="Facebook Icon" / >
+                </a>
+                <a href="https://www.instagram.com/babyinabag/" target="_blank">
+                    <img src="~/images/instagram-icon.png" alt="Instagram Icon" />
+                </a>
+            </ul>
+        </div>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
