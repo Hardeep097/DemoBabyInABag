@@ -3,6 +3,8 @@
 
 @{
     ViewBag.Title = "Products";
+    List<string> prodcat = new List<string>();
+    List<int> prodcatindex = new List<int>();
 }
 
 <!-- product Section -->
@@ -33,89 +35,54 @@
         </div>
     </section>
 
-    
 
+    @foreach (var item in ViewBag.data)
+    {
 
-        @foreach (var item in Model)
+    <section class="section-spacing products">
+        <h1>@item.Product_Category</h1>
+        @foreach (var item2 in Model)
         {
-
-            if (item.Active == true)
+            if (item2.Active == true)
             {
-                using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                if (item.Product_Category_Id == item2.Product_Category_Id)
                 {
-                    @Html.AntiForgeryToken()
-                    <section class="section-spacing products">
-                        <div class="product-wrapper">
+                    using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                            <div class="product-wrapper">
+                                <div id="productDiv" class="w3-panel w3-border w3-round-xlarge">
 
-                            <div id="productDiv" class="w3-panel w3-border w3-round-xlarge">
-
-                                <div class="w3-row">
-                                    <div class="w3-col w3-container m4 l3 ">
-                                        <img id="image1" src="@item.Product_Image" alt="@item.Product_Image">
-                                    </div>
-                                    <div class="w3-col w3-container m8">
-                                        <h2>@Html.DisplayFor(modelItem => item.Product_Name)</h2>
-                                        <p>@Html.DisplayFor(modelItem => item.Product_Description)</p>
-                                        <div id="pright">
-                                            <h4 id="cprice">CAD @Html.DisplayFor(modelItem => item.Product_Price)</h4>
+                                    <div class="w3-row">
+                                        <div class="w3-col w3-container m4 l3 ">
+                                            <img id="image1" src="@item2.Product_Image" alt="@item2.Product_Image">
                                         </div>
-                                        
-                                                <h4>Quantity</h4>
-                                                <input name="pid" value="@item.Product_Id" type="hidden" />
-                                                <select name="quantity">
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                </select>
-                                            
-                                                <input type="submit" value="Add To Cart" id="buttoncart" />
-
+                                        <div class="w3-col w3-container m8">
+                                            <h2>@Html.DisplayFor(modelItem => item2.Product_Name)</h2>
+                                            <p>@Html.DisplayFor(modelItem => item2.Product_Description)</p>
+                                            <div id="pright">
+                                                <h4 id="cprice">CAD @Html.DisplayFor(modelItem => item2.Product_Price)</h4>
                                             </div>
+
+                                            <h4>Quantity</h4>
+                                            <input name="pid" value="@item2.Product_Id" type="hidden" />
+                                            <select name="quantity">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                            </select>
+
+                                            <input type="submit" value="Add To Cart" id="buttoncart" />
+
                                         </div>
                                     </div>
-                        </div>
-                    </section>
-                }
+                                </div>
 
+                            </div>
+                    }
+                }
             }
         }
-
+    </section>
+    }
 </main>
-
-<script>
-
-    $(document).ready(function () {
-
-        var quantitiy = 0;
-        $('.quantity-right-plus').click(function (e) {
-
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            var quantity = parseInt($('#quantity').val());
-
-            // If is not undefined
-
-            $('#quantity').val(quantity + 1);
-
-
-            // Increment
-
-        });
-
-        $('.quantity-left-minus').click(function (e) {
-            // Stop acting like a button
-            e.preventDefault();
-            // Get the field name
-            var quantity = parseInt($('#quantity').val());
-
-            // If is not undefined
-
-            // Increment
-            if (quantity > 0) {
-                $('#quantity').val(quantity - 1);
-            }
-        });
-
-    });
-</script>
