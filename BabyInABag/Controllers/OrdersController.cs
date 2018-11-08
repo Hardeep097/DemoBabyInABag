@@ -37,18 +37,18 @@ namespace BabyInABag.Controllers
         }
 
         // GET: Orders/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? ids)
         {
-            if (id == null)
+            if (ids == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Order order = db.Orders.Find(id);
+            Order order = db.Orders.Find(ids);
             if (order == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
+            //ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
             return View(order);
         }
 
