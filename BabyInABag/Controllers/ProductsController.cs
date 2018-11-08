@@ -157,8 +157,7 @@ namespace BabyInABag.Controllers
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Product product = db.Products.Find(id);
-        //    if (product == null)
+        //    Product product = db.Products.Find
         //    {
         //        return HttpNotFound();
         //    }
