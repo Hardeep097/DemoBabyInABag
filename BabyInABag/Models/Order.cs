@@ -34,6 +34,7 @@ namespace BabyInABag.Models
         [Display(Name = "Full Name")]
         public string Full_Name { get; set; }
 
+        public string cartQuantity { get; set; }
 
         public string Id { get; set; }
         [ForeignKey("Id")]
@@ -42,8 +43,8 @@ namespace BabyInABag.Models
         //public virtual Customer Customer { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
-
-        public List<int> cartQuantity { get; set; }
+        
+        
     }
 
     public enum order_status { Submitted, Pending, Processing, Ongoing, Completed, Rejected, Refunded }

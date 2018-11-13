@@ -24,8 +24,8 @@ namespace BabyInABag.Migrations
 
             context.Orders.AddOrUpdate(
                 o => o.Order_Id,
-               new Order { Order_Id = 1, Order_Date_Placed = value, Order_Status = order_status.Ongoing, Id = "b97df479-4318-4e27-b06c-d3a050e9e414" },
-               new Order { Order_Id = 2, Order_Date_Placed = value, Order_Status = order_status.Ongoing, Id = "b97df479-4318-4e27-b06c-d3a050e9e414" }
+               new Order { Order_Id = 1, Order_Date_Placed = value, Order_Status = order_status.Ongoing, Id = "b97df479-4318-4e27-b06c-d3a050e9e414" , cartQuantity="1,2,3"},
+               new Order { Order_Id = 2, Order_Date_Placed = value, Order_Status = order_status.Ongoing, Id = "b97df479-4318-4e27-b06c-d3a050e9e414", cartQuantity="1,3,2" }
                );
 
             context.Products.AddOrUpdate(
