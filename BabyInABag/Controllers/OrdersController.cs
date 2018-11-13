@@ -70,9 +70,23 @@ namespace BabyInABag.Controllers
         // POST: Orders/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id")] Order order)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(order).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
+        //    return View(order);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id")] Order order)
+        public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id,Shipping_Address,Order_Total,Full_Name")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +94,7 @@ namespace BabyInABag.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
+            ViewBag.CustomerId = new SelectList(db.Users, "Customer_Id", "First_Name", order.Id);
             return View(order);
         }
 

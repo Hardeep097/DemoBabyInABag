@@ -5,7 +5,7 @@ html body {
     font-family: monospace;
     position: relative;
     min-height: 100vh; /* will cover the 100% of viewport */
-    padding-bottom: 236px; /* height of your footer */
+    padding-bottom: 300px; /* height of your footer */
 }
 
 /*To reset some of the tags modified by Bootstrap*/
