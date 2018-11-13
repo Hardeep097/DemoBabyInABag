@@ -98,11 +98,23 @@
                             </tr>
                             @foreach (var item in Model.Products)
                             {
-                                <tr>
-                                    <td><p style="margin: 0px;">@Html.DisplayFor(modelItem => item.Product_Name)</p></td>
-                                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Product_Price)</td>
-                                </tr>
+                            <tr>
+                                <td><p style="margin: 0px;">@Html.DisplayFor(modelItem => item.Product_Name)</p></td>
+                                @for (int i = 0; i < Model.productListing.Length; i++)
+                                {
+                                    if (Model.productListing[i] != "")
+                                    {
+                                        string[] prod = Model.productListing[i].Split(':');
+                                        if (Convert.ToInt32(prod[i]) == item.Product_Id)
+                                        {
+                                            var truequantity = prod[i + 1];
+                                            <td>@Html.DisplayFor(model => truequantity)</td>
+                                        }
+                                    }
+
+                                }
+                                <td>@Html.DisplayFor(modelItem => item.Product_Price)</td>
+                            </tr>
                             }
                         </table>
                     </div>

@@ -41,6 +41,8 @@ namespace BabyInABag.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order order = db.Orders.Find(ids);
+            string list = order.cartQuantity;
+            order.productListing = list.Split('|');
             if (order == null)
             {
                 return HttpNotFound();

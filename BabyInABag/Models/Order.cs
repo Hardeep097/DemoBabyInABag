@@ -43,7 +43,8 @@ namespace BabyInABag.Models
         //public virtual Customer Customer { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
-        
+
+        public string[] productListing { get; set; }
         
     }
 
