@@ -17,10 +17,7 @@ namespace BabyInABag.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Orders
-        public ActionResult Index()
-        {
-            return View(db.Orders.ToList());
-        }
+        public ActionResult Index(){ return View(db.Orders.ToList()); }
 
         public ActionResult Details(int? id)
         {
@@ -36,21 +33,6 @@ namespace BabyInABag.Controllers
             return View(order);
         }
 
-        // GET: Orders/Edit/5
-        //public ActionResult Edit(int? ids)
-        //{
-        //    if (ids == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Order order = db.Orders.Find(ids);
-        //    if (order == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    //ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
-        //    return View(order);
-        //}
 
         public ActionResult Edit(int? ids)
         {
@@ -67,23 +49,7 @@ namespace BabyInABag.Controllers
             return View(order);
         }
 
-        // POST: Orders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id")] Order order)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(order).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.CustomerId = new SelectList(db.Users, "Id", "First_Name", order.Id);
-        //    return View(order);
-        //}
-
+   
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id,Shipping_Address,Order_Total,Full_Name")] Order order)
@@ -138,45 +104,12 @@ namespace BabyInABag.Controllers
             return View();
         }
 
-        // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public void Create(Order order)
-        //{
-        //    string username = (string)Session["username"];
-        //    string customer_id = null;
-        //    List<ApplicationUser> customers = db.Users.ToList();
-        //    for (int i = 0; i < customers.Count; i++)
-        //    {
-        //        if (customers[i].UserName == username)
-        //        {
-        //            customer_id = customers[i].Id;
-        //        }
-        //    }
-
-        //    //Order order = new Order();
-        //    order.Id = customer_id;
-        //    order.Products = getCartProducts();
-        //    order.Order_Status = order_status.Submitted;
-        //    order.Order_Date_Placed = System.DateTime.Now;
-
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Orders.Add(order);
-        //        db.SaveChanges();
-        //    }
-
-        //}
+      
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public void Create(Order order)
         {
-            //List<Product> activeCart = activeProducts;
-
             string username = (string)Session["username"];
             string customer_id = null;
             List<ApplicationUser> customers = db.Users.ToList();
@@ -188,12 +121,11 @@ namespace BabyInABag.Controllers
                 }
             }
 
-            //Order order = new Order();
             order.Id = customer_id;
-            order.Products = GetCartProducts();
+            order.cartQuantity = "";
+            order.Products = GetCartProducts(order);
             order.Order_Status = order_status.Submitted;
             order.Order_Date_Placed = System.DateTime.Now;
-
 
             if (ModelState.IsValid)
             {
@@ -202,8 +134,6 @@ namespace BabyInABag.Controllers
             }
         }
 
-
-      
         public ActionResult Payment()
         {
             return View();
@@ -257,8 +187,6 @@ namespace BabyInABag.Controllers
                     Full_Name = address_name_decoded,
                     Order_Total = Convert.ToDecimal(payment_gross_decoded),
                     Order_Number = GenerateOrderNumber()
-
-
                 };
 
                 Create(order);
@@ -275,7 +203,7 @@ namespace BabyInABag.Controllers
             return View();
         }
 
-        public List<Product> GetCartProducts()
+        public List<Product> GetCartProducts(Order order)
         {
             List<CartItem> currentCart = (List<CartItem>)Session["cart"];
             List<Product> activeCart = new List<Product>();
@@ -289,9 +217,8 @@ namespace BabyInABag.Controllers
                 {
                     if (products[c].Product_Id.Equals(currentCart[d].ProductID))
                     {
-                        Product p = products[c];
-                        p.Quantity = currentCart[d].Quantity;
-                        activeCart.Add(p);
+                        activeCart.Add(products[c]);
+                        order.cartQuantity = order.cartQuantity + products[c].Product_Id + ":" + currentCart[d].Quantity + "|";
                     }
                 }
             }
