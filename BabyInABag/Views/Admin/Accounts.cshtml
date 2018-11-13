@@ -33,8 +33,11 @@
 
                                     <div class="col-md-10">
                                         @*<h2>
-                                            @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()
-                                                                            </h2>*@
+        @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()
+                                        </h2>*@
+                                        <h4 style = "margin-bottom:5px; color:green;">  @Html.ViewBag.acsuccess</h4>
+                                        <h4 style = "margin-bottom:5px; color:red;">  @Html.ViewBag.acerror</h4>
+
                                         @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name", style = "margin-bottom:5px;" } })
                                         <br />
 

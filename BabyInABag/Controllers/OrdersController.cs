@@ -203,28 +203,7 @@ namespace BabyInABag.Controllers
         }
 
 
-        public List<Product> getCartProducts()
-        {
-            List<CartItem> currentCart = (List<CartItem>)Session["cart"];
-            List<Product> activeCart = new List<Product>();
-            List<Product> products = new List<Product>();
-
-            products = db.Products.ToList();
-
-            for (int c = 0; c < products.Count; c++)
-            {
-                for (int d = 0; d < currentCart.Count; d++)
-                {
-                    if (products[c].Product_Id.Equals(currentCart[d].ProductID))
-                    {
-                        activeCart.Add(products[c]);
-                    }
-                }
-            }
-
-            return activeCart;
-        }
-
+      
         public ActionResult Payment()
         {
             return View();
@@ -310,7 +289,9 @@ namespace BabyInABag.Controllers
                 {
                     if (products[c].Product_Id.Equals(currentCart[d].ProductID))
                     {
-                        activeCart.Add(products[c]);
+                        Product p = products[c];
+                        p.Quantity = currentCart[d].Quantity;
+                        activeCart.Add(p);
                     }
                 }
             }
