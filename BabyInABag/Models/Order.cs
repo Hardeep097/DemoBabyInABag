@@ -42,6 +42,8 @@ namespace BabyInABag.Models
         //public virtual Customer Customer { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }
+
+        public List<int> cartQuantity { get; set; }
     }
 
     public enum order_status { Submitted, Pending, Processing, Ongoing, Completed, Rejected, Refunded }
