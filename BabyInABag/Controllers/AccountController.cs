@@ -200,7 +200,7 @@ namespace BabyInABag.Controllers
                             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                             await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Thank you for signing up."+ Environment.NewLine+"Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-
+                            ViewBag.acsuccess = "Created";
                             return RedirectToAction("Accounts", "Admin");
                         }
                     }
@@ -226,16 +226,21 @@ namespace BabyInABag.Controllers
                       //  return RedirectToAction("Index", "Home");
                     }
 
-
-                 
-                    
-
                 }
+
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.acerror = "Failed";
+                return RedirectToAction("Accounts", "Admin");
+            }
+            else {
+                return View(model);
+            }
+                
         }
 
         //
