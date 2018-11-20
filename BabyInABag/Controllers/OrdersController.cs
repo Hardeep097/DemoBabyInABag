@@ -18,19 +18,7 @@ namespace BabyInABag.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index(){ return View(db.Orders.ToList()); }
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
+       
 
 
         public ActionResult Edit(int? ids)
@@ -156,10 +144,7 @@ namespace BabyInABag.Controllers
             }
         }
 
-        public ActionResult Payment()
-        {
-            return View();
-        }
+       
 
         public string GenerateOrderNumber()
         {
