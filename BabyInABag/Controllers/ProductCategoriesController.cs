@@ -21,21 +21,6 @@ namespace BabyInABag.Controllers
             return View(db.ProductCategories.ToList());
         }
 
-        // GET: ProductCategories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ProductCategory productCategory = db.ProductCategories.Find(id);
-            if (productCategory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(productCategory);
-        }
-
         // GET: ProductCategories/Create
         public ActionResult Create()
         {
@@ -47,7 +32,7 @@ namespace BabyInABag.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Product_Category_Id,Product_Category,Default_Image,Default_Price, ImageFile")] ProductCategory productCategory)
+        public ActionResult Create([Bind(Include = "Product_Category_Id,Product_Category,Default_Image,Default_Price,Active,ImageFile")] ProductCategory productCategory)
         {
             if (ModelState.IsValid)
             {
@@ -105,7 +90,7 @@ namespace BabyInABag.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Product_Category_Id,Product_Category,Default_Image,Default_Price,ImageFile")] ProductCategory productCategory)
+        public ActionResult Edit([Bind(Include = "Product_Category_Id,Product_Category,Default_Image,Default_Price,Active,ImageFile")] ProductCategory productCategory)
         {
             if (ModelState.IsValid)
             {
@@ -147,32 +132,6 @@ namespace BabyInABag.Controllers
             //model valid ends
 
             return View(productCategory);
-        }
-
-        // GET: ProductCategories/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ProductCategory productCategory = db.ProductCategories.Find(id);
-            if (productCategory == null)
-            {
-                return HttpNotFound();
-            }
-            return View(productCategory);
-        }
-
-        // POST: ProductCategories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ProductCategory productCategory = db.ProductCategories.Find(id);
-            db.ProductCategories.Remove(productCategory);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

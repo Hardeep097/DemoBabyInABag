@@ -22,37 +22,8 @@ namespace BabyInABag.Controllers
 
         public ActionResult Accounts()
         {
-            //Comment to test GIT commit and PUSH - GRACE IS AWESOME
             return View();
         }
-
-        //[HttpPost]
-        //public ActionResult Accounts(Admin admin, FormCollection frm)
-        //{
-        //    if (admin.Password.Equals(frm["psw-repeat"]))
-        //    {
-        //        Authenticator auth = new Authenticator();
-
-        //        admin.Salt = admin.Username;
-        //        admin.Password = auth.GenerateHash(admin.Username, admin.Password);
-        //        admin.Enabled = true;
-
-
-        //        using (db)
-        //        {
-        //            db.Admins.Add(admin);
-        //            db.SaveChanges();
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        ModelState.Clear();
-        //        ViewBag.reply = "Passwords do not match";
-        //    }
-
-        //    return View();
-        //}
 
         public ActionResult AddProduct()
         {
@@ -115,17 +86,7 @@ namespace BabyInABag.Controllers
             return View(db.Products.ToList());
         }
 
-        public ActionResult Orders()
-        {
-            return View();
-        }
-
         public ActionResult Reports()
-        {
-            return View();
-        }
-
-        public ActionResult Report1()
         {
             return View();
         }
