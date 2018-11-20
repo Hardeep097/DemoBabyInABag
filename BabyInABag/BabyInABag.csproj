@@ -275,6 +275,10 @@
     <Compile Include="Migrations\201811131826408_orderquantity2.Designer.cs">
       <DependentUpon>201811131826408_orderquantity2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811201955097_categoeryactive.cs" />
+    <Compile Include="Migrations\201811201955097_categoeryactive.Designer.cs">
+      <DependentUpon>201811201955097_categoeryactive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -403,7 +407,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -513,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811131826408_orderquantity2.resx">
       <DependentUpon>201811131826408_orderquantity2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201955097_categoeryactive.resx">
+      <DependentUpon>201811201955097_categoeryactive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
