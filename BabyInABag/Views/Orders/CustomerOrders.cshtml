@@ -1,0 +1,29 @@
+﻿@using BabyInABag.Models
+@using System.Configuration
+@model IEnumerable<Order>
+@{
+    ViewBag.Title = "CustomerOrders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 1;
+}
+
+<section class="section-first section-spacing">
+    @if (!Model.Any())
+    {
+        <h2>Take a look at what you've bought!</h2>
+        foreach (var item in Model)
+        {
+            <h1>Order @i</h1>
+            <h4><b>Customer Identification:</b> @Html.DisplayFor(modelItem => item.Id)</h4>
+            <h4><b>Order Number:</b> @Html.DisplayFor(modelItem => item.Order_Number)</h4>
+            <h4><b>Products:</b> @Html.DisplayFor(modelItem => item.Products)</h4>
+
+        }
+    }
+    else
+    {
+        <h2>You haven't bought any of our products yet!</h2>
+    }
+</section>
+
+

@@ -97,8 +97,7 @@ namespace BabyInABag.Controllers
                            Session["username"] = model.Email;
                            Session["name"] = currentUser.FirstName;
 
-                            
-                            return RedirectToAction("Accounts", "Admin");
+                           return RedirectToAction("Accounts", "Admin");
 
 
                         }
@@ -106,6 +105,7 @@ namespace BabyInABag.Controllers
                         {
                             Session["username"] = model.Email;
                             Session["name"] = currentUser.FirstName;
+                            Session["currentid"] = currentUser.Id;
                             
                             return RedirectToLocal(returnUrl);
                         }
