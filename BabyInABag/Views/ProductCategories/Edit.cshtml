@@ -17,7 +17,7 @@
     <!-- Panel -->
     <div class="main">
       
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Edit", "ProductCategories", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
 
