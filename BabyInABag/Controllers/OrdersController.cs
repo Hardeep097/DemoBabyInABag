@@ -16,7 +16,6 @@ namespace BabyInABag.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Orders
         public ActionResult Index(){ return View(db.Orders.ToList()); }
 
         public ActionResult Edit(int? ids)
@@ -35,7 +34,6 @@ namespace BabyInABag.Controllers
             
             return View(order);
         }
-
    
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -91,7 +89,24 @@ namespace BabyInABag.Controllers
             return View();
         }
 
-      
+        public ActionResult CustomerOrders()
+        {
+            //Pull Customer Id from the Session
+            String customer_id = Session["currentid"].ToString();
+
+            List<Order> orders = db.Orders.ToList();
+            List<Order> customer_orders = new List<Order>();
+
+            for(int i = 0; i < orders.Count; i++)
+            {
+                if(orders[i].Id == customer_id)
+                {
+                    customer_orders.Add(orders[i]);
+                }
+            }
+
+            return View(customer_orders);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -207,7 +222,6 @@ namespace BabyInABag.Controllers
 
             return activeCart;
         }
-
 
         protected override void Dispose(bool disposing)
         {
