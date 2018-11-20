@@ -16,12 +16,14 @@ namespace BabyInABag.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ProductCategories
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.ProductCategories.ToList());
         }
 
         // GET: ProductCategories/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,12 +38,14 @@ namespace BabyInABag.Controllers
             return View(productCategory);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: ProductCategories/Create
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         // POST: ProductCategories/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -83,7 +87,7 @@ namespace BabyInABag.Controllers
            
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: ProductCategories/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -103,6 +107,7 @@ namespace BabyInABag.Controllers
         // POST: ProductCategories/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Product_Category_Id,Product_Category,Default_Image,Default_Price,ImageFile")] ProductCategory productCategory)

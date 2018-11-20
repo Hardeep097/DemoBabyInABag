@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace BabyInABag.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DotNetSetupController : Controller
     {
 		//[Authorize(Roles ="SuperAdmin")] // This Action should not be available to regular users

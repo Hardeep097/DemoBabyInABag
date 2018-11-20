@@ -458,7 +458,6 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Checkout.cshtml" />
     <Content Include="Views\Orders\GetPayPalData.cshtml" />
-    <Content Include="Views\Orders\Payment.cshtml" />
     <Content Include="Views\Shared\_Layout.Report.cshtml" />
     <Content Include="Views\DotNetSetup\Index.cshtml" />
     <Content Include="Views\DotNetReport\_reportFilter.cshtml" />
