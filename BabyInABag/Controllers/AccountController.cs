@@ -195,6 +195,7 @@ namespace BabyInABag.Controllers
                         {
                             var currentUser = UserManager.FindByEmail(user.Email);
 
+
                             var roleresult = UserManager.AddToRole(currentUser.Id, "Admin");
 
                             string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -211,7 +212,7 @@ namespace BabyInABag.Controllers
 
                         Session["name"] = currentUser.FirstName;
 
-                        var roleresult = UserManager.AddToRole(currentUser.Id, "Admin");
+                        var roleresult = UserManager.AddToRole(currentUser.Id, "Customer");
 
                         //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         

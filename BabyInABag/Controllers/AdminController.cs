@@ -8,9 +8,10 @@ using System.Web.Mvc;
 
 namespace BabyInABag.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-
+       
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Admin
