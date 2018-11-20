@@ -18,6 +18,7 @@ using System.Text.RegularExpressions;
 
 namespace BabyInABag.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DotNetReportController : Controller
     {
         public ActionResult Index()

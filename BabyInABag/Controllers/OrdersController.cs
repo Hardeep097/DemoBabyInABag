@@ -15,8 +15,11 @@ namespace BabyInABag.Controllers
     public class OrdersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(){ return View(db.Orders.ToList()); }
+
+       
+
 
         public ActionResult Edit(int? ids)
         {
@@ -34,7 +37,8 @@ namespace BabyInABag.Controllers
             
             return View(order);
         }
-   
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id,Shipping_Address,Order_Total,Order_Number,Full_Name,cartQuantity")] Order order)
@@ -49,6 +53,7 @@ namespace BabyInABag.Controllers
             return View(order);
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult Checkout()
         {
             if (Session["cart"] == null)
@@ -89,6 +94,7 @@ namespace BabyInABag.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult CustomerOrders()
         {
             //Pull Customer Id from the Session
@@ -137,6 +143,8 @@ namespace BabyInABag.Controllers
                 db.SaveChanges();
             }
         }
+
+       
 
         public string GenerateOrderNumber()
         {
