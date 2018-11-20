@@ -35,27 +35,28 @@
                                         @*<h2>
         @HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()
                                         </h2>*@
-                                        <h4 style = "margin-bottom:5px; color:green;">  @Html.ViewBag.acsuccess</h4>
-                                        <h4 style = "margin-bottom:5px; color:red;">  @Html.ViewBag.acerror</h4>
+                                        <h4 style="margin-bottom:5px; color:green;"> @TempData["acsuccess"]</h4>
+                                        <h4 style="margin-bottom:5px; color:red;">   @TempData["acerror"]</h4>
 
-                                        @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name", style = "margin-bottom:5px;" } })
+                                        @Html.EditorFor(m => m.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "First Name", style = "margin-bottom:5px;", required = "required" } })
                                         <br />
 
-                                        @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last Name", style = "margin-bottom:5px;" } })
+                                        @Html.EditorFor(m => m.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "Last Name", style = "margin-bottom:5px;", required = "required" } })
                                         <br />
 
-                                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email", style = "margin-bottom:5px;" } })
+                                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email", style = "margin-bottom:5px;", required = "required", @type = "email" } })
 
                                         <br />
+                                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-                                        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", style = "margin-bottom:5px;" } })
-
-                                        <br />
-
-                                        @Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password", style = "margin-bottom:5px;" } })
+                                        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { @class = "form-control", id = "password", placeholder = "Password", style = "margin-bottom:5px;", required = "required" } })
 
                                         <br />
 
+                                        @Html.EditorFor(m => m.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", id = "confirm_password", placeholder = "Confirm Password", style = "margin-bottom:5px;", required = "required" } })
+                                        <br />
+                                        <span id='message'></span>
+                                        <br />
                                         <input style="" margin-bottom:5px", hidden="true" name="hackingKey" value="TheyLiveWeSleep">
                                     </div>
                                 </div>

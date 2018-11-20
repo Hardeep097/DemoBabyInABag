@@ -181,7 +181,8 @@ namespace BabyInABag.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, FormCollection frm)
         {
-            
+            string gresult = "";
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser {  Email = model.Email, UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName};
@@ -200,7 +201,7 @@ namespace BabyInABag.Controllers
                             var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                             await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Thank you for signing up."+ Environment.NewLine+"Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                            ViewBag.acsuccess = "Created";
+                            TempData["acsuccess"] = "Created";
                             return RedirectToAction("Accounts", "Admin");
                         }
                     }
@@ -227,14 +228,16 @@ namespace BabyInABag.Controllers
                     }
 
                 }
-
+                gresult =  AddAdminErrors(result);
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
             if (User.IsInRole("Admin"))
             {
-                ViewBag.acerror = "Failed";
+               
+               TempData["acerror"] = gresult;
+                
                 return RedirectToAction("Accounts", "Admin");
             }
             else {
@@ -515,6 +518,26 @@ namespace BabyInABag.Controllers
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        private string AddAdminErrors(IdentityResult result)
+        {
+            string mainerror =  "Make sure password is matching";
+            int i = 1;
+            foreach (var error in result.Errors)
+            {
+                if (i == 1)
+                {
+                    mainerror = mainerror + " " + error;
+                }
+                else
+                {
+                    mainerror = mainerror + " , " + error;
+                }
+                i++;
+            }
+
+            return mainerror;
         }
 
         private ActionResult RedirectToLocal(string returnUrl)
