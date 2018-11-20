@@ -7,8 +7,10 @@ using System.Web.Mvc;
 
 namespace BabyInABag.Controllers
 {
+    [Authorize(Roles = "Customer")]
     public class CartController : Controller
     {
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Cart()

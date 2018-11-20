@@ -15,23 +15,10 @@ namespace BabyInABag.Controllers
     public class OrdersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: Orders
+        [Authorize(Roles = "Admin")]
         public ActionResult Index(){ return View(db.Orders.ToList()); }
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
+       
 
 
         public ActionResult Edit(int? ids)
@@ -51,10 +38,10 @@ namespace BabyInABag.Controllers
             return View(order);
         }
 
-   
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id,Shipping_Address,Order_Total,Full_Name")] Order order)
+        public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id,Shipping_Address,Order_Total,Order_Number,Full_Name,cartQuantity")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +53,7 @@ namespace BabyInABag.Controllers
             return View(order);
         }
 
+        [Authorize(Roles = "Customer")]
         public ActionResult Checkout()
         {
             if (Session["cart"] == null)
@@ -106,7 +94,27 @@ namespace BabyInABag.Controllers
             return View();
         }
 
-      
+        [Authorize(Roles = "Customer")]
+        public ActionResult CustomerOrders()
+        {
+            //Pull Customer Id from the Session
+            String customer_id = Session["currentid"].ToString();
+
+            //Creates 2 lists to contain all orders, and orders filtered down to customer
+            List<Order> orders = db.Orders.ToList();
+            List<Order> customer_orders = new List<Order>();
+
+            for(int i = 0; i < orders.Count; i++)
+            {
+                if(orders[i].Id == customer_id)
+                {
+                    //if order belongs to customer, add to list
+                    customer_orders.Add(orders[i]);
+                }
+            }
+
+            return View(customer_orders);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -136,10 +144,7 @@ namespace BabyInABag.Controllers
             }
         }
 
-        public ActionResult Payment()
-        {
-            return View();
-        }
+       
 
         public string GenerateOrderNumber()
         {
@@ -227,7 +232,6 @@ namespace BabyInABag.Controllers
 
             return activeCart;
         }
-
 
         protected override void Dispose(bool disposing)
         {

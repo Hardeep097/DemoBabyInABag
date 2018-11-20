@@ -16,28 +16,6 @@ namespace BabyInABag.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         List<CartItem> cart = new List<CartItem>();
 
-        // GET: Products
-        public ActionResult Index()
-        {
-            var products = db.Products.Include(p => p.PCT);
-            return View(products.ToList());
-        }
-
-        // GET: Products/Details/5
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Product product = db.Products.Find(id);
-        //    if (product == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(product);
-        //}
-
         // GET: Products/Create
         public ActionResult Create()
         {
@@ -88,18 +66,6 @@ namespace BabyInABag.Controllers
             }
 
             return View(product);
-
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Product product = db.Products.Find(id);
-            //if (product == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //ViewBag.Product_Category_Id = new SelectList(db.ProductCategories, "Product_Category_Id", "Product_Category", product.Product_Category_Id);
-            //return View(product);
         }
 
         // POST: Products/Edit/5
@@ -149,31 +115,6 @@ namespace BabyInABag.Controllers
 
             return View(product);
         }
-
-        //// GET: Products/Delete/5
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Product product = db.Products.Find
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(product);
-        //}
-
-        //// POST: Products/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    Product product = db.Products.Find(id);
-        //    db.Products.Remove(product);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         public ActionResult Products()
         {

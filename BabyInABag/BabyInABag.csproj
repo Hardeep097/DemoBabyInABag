@@ -275,6 +275,10 @@
     <Compile Include="Migrations\201811131826408_orderquantity2.Designer.cs">
       <DependentUpon>201811131826408_orderquantity2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811201955097_categoeryactive.cs" />
+    <Compile Include="Migrations\201811201955097_categoeryactive.Designer.cs">
+      <DependentUpon>201811201955097_categoeryactive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -403,7 +407,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -429,24 +433,17 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Products.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Products\CustomizeProduct.cshtml" />
     <Content Include="Views\Admin\AddProduct.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Admin\ManageProducts.cshtml" />
-    <Content Include="Views\Admin\Orders.cshtml" />
     <Content Include="Views\Admin\Reports.cshtml" />
-    <Content Include="Views\Admin\Report1.cshtml" />
     <Content Include="Views\Admin\Accounts.cshtml" />
     <Content Include="Views\Account\Info.cshtml" />
     <Content Include="Views\ProductCategories\Create.cshtml" />
-    <Content Include="Views\ProductCategories\Delete.cshtml" />
-    <Content Include="Views\ProductCategories\Details.cshtml" />
     <Content Include="Views\ProductCategories\Edit.cshtml" />
     <Content Include="Views\ProductCategories\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
@@ -454,7 +451,6 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Checkout.cshtml" />
     <Content Include="Views\Orders\GetPayPalData.cshtml" />
-    <Content Include="Views\Orders\Payment.cshtml" />
     <Content Include="Views\Shared\_Layout.Report.cshtml" />
     <Content Include="Views\DotNetSetup\Index.cshtml" />
     <Content Include="Views\DotNetReport\_reportFilter.cshtml" />
@@ -462,6 +458,7 @@
     <Content Include="Views\DotNetReport\Index.cshtml" />
     <Content Include="Views\DotNetReport\Dashboard.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Orders\CustomerOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -513,6 +510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811131826408_orderquantity2.resx">
       <DependentUpon>201811131826408_orderquantity2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811201955097_categoeryactive.resx">
+      <DependentUpon>201811201955097_categoeryactive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

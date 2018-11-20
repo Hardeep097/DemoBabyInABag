@@ -145,7 +145,7 @@
                                         <div onclick="myFunction()" class="dropbtn"> Hello @Session["name"].ToString()! <i class="fa fa-caret-down"></i></div>
                                         <div id="myDropdown" class="dropdown-content">
                                             <a href="@Url.Action("Index", "Manage")">Profile Setting</a>
-                                            <a href="#orders">Orders</a>
+                                            <a href="@Url.Action("CustomerOrders","Orders")">Orders</a>
                                             <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
                                         </div>
                                     </div>
