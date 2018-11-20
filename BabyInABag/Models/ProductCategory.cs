@@ -22,6 +22,8 @@ namespace BabyInABag.Models
         [Display(Name = "Price")]
         public decimal Default_Price { get; set; }
 
+        public bool Active { get; set; }
+
         [NotMapped]
         public HttpPostedFileBase ImageFile { get; set; }
 

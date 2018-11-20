@@ -19,21 +19,6 @@ namespace BabyInABag.Controllers
         // GET: Orders
         public ActionResult Index(){ return View(db.Orders.ToList()); }
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
-        }
-
-
         public ActionResult Edit(int? ids)
         {
             if (ids == null)
@@ -134,11 +119,6 @@ namespace BabyInABag.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
             }
-        }
-
-        public ActionResult Payment()
-        {
-            return View();
         }
 
         public string GenerateOrderNumber()

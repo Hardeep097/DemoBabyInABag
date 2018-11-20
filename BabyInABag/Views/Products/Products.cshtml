@@ -38,51 +38,53 @@
 
     @foreach (var item in ViewBag.data)
     {
-
-    <section class="section-spacing products">
-        <h1>@item.Product_Category</h1>
-        @foreach (var item2 in Model)
+        if (item.Active == true)
         {
-            if (item2.Active == true)
-            {
-                if (item.Product_Category_Id == item2.Product_Category_Id)
+            <section class="section-spacing products">
+                <h1>@item.Product_Category</h1>
+                @foreach (var item2 in Model)
                 {
-                    using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    if (item2.Active == true)
                     {
-                        @Html.AntiForgeryToken()
-                            <div class="product-wrapper">
-                                <div id="productDiv" class="w3-panel w3-border w3-round-xlarge">
+                        if (item.Product_Category_Id == item2.Product_Category_Id)
+                        {
+                            using (Html.BeginForm("AddToCart", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="product-wrapper">
+                                    <div id="productDiv" class="w3-panel w3-border w3-round-xlarge">
 
-                                    <div class="w3-row">
-                                        <div class="w3-col w3-container m4 l3 ">
-                                            <img id="image1" src="@item2.Product_Image" alt="@item2.Product_Image">
-                                        </div>
-                                        <div class="w3-col w3-container m8">
-                                            <h2>@Html.DisplayFor(modelItem => item2.Product_Name)</h2>
-                                            <p>@Html.DisplayFor(modelItem => item2.Product_Description)</p>
-                                            <div id="pright">
-                                                <h4 id="cprice">CAD @Html.DisplayFor(modelItem => item2.Product_Price)</h4>
+                                        <div class="w3-row">
+                                            <div class="w3-col w3-container m4 l3 ">
+                                                <img id="image1" src="@item2.Product_Image" alt="@item2.Product_Image">
                                             </div>
+                                            <div class="w3-col w3-container m8">
+                                                <h2>@Html.DisplayFor(modelItem => item2.Product_Name)</h2>
+                                                <p>@Html.DisplayFor(modelItem => item2.Product_Description)</p>
+                                                <div id="pright">
+                                                    <h4 id="cprice">CAD @Html.DisplayFor(modelItem => item2.Product_Price)</h4>
+                                                </div>
 
-                                            <h4>Quantity</h4>
-                                            <input name="pid" value="@item2.Product_Id" type="hidden" />
-                                            <select name="quantity">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                            </select>
+                                                <h4>Quantity</h4>
+                                                <input name="pid" value="@item2.Product_Id" type="hidden" />
+                                                <select name="quantity">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
 
-                                            <input type="submit" value="Add To Cart" id="buttoncart" />
+                                                <input type="submit" value="Add To Cart" id="buttoncart" />
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                            </div>
+                                </div>
+                            }
+                        }
                     }
                 }
-            }
+            </section>
         }
-    </section>
     }
-</main>
+    </main>

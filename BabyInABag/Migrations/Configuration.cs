@@ -35,9 +35,9 @@ namespace BabyInABag.Migrations
 
             context.ProductCategories.AddOrUpdate(
                 pc => pc.Product_Category_Id,
-                new ProductCategory { Product_Category_Id = 1, Product_Category = "Blanket", Default_Image = "/images/blueb180237469.jpg", Default_Price = 50 },
-                new ProductCategory { Product_Category_Id = 2, Product_Category = "Boots", Default_Image = "/images/bubblesprite180347444.jpg", Default_Price = 40 },
-                new ProductCategory { Product_Category_Id = 3, Product_Category = "Sleeping Bag", Default_Image = "/images/bluesky180530225.jpg", Default_Price = 60 }
+                new ProductCategory { Product_Category_Id = 1, Product_Category = "Blanket", Default_Image = "/images/blueb180237469.jpg", Active = true, Default_Price = 50 },
+                new ProductCategory { Product_Category_Id = 2, Product_Category = "Boots", Default_Image = "/images/bubblesprite180347444.jpg", Active = true, Default_Price = 40 },
+                new ProductCategory { Product_Category_Id = 3, Product_Category = "Sleeping Bag", Default_Image = "/images/bluesky180530225.jpg", Active = true, Default_Price = 60 }
                 );
         }
     }
