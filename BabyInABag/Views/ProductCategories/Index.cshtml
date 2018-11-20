@@ -27,6 +27,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Default_Price)
                         </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Active)
+                        </th>
                         <th></th>
                     </tr>
 
@@ -43,9 +46,10 @@
                                 @Html.DisplayFor(modelItem => item.Default_Price)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Product_Category_Id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.Product_Category_Id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Product_Category_Id })
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Product_Category_Id })
                             </td>
                         </tr>
                     }

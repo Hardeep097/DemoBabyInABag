@@ -17,7 +17,7 @@ namespace BabyInABag.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         [Authorize(Roles = "Admin")]
         public ActionResult Index(){ return View(db.Orders.ToList()); }
-        [Authorize(Roles = "Admin")]
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -32,7 +32,7 @@ namespace BabyInABag.Controllers
             return View(order);
         }
 
-        [Authorize(Roles = "Admin")]
+
         public ActionResult Edit(int? ids)
         {
             if (ids == null)
@@ -53,7 +53,7 @@ namespace BabyInABag.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id,Shipping_Address,Order_Total,Full_Name")] Order order)
+        public ActionResult Edit([Bind(Include = "Order_Id,Order_Date_Placed,Order_Status,Order_Details,Order_Date_Paid,Invoice_Status,Id,Shipping_Address,Order_Total,Order_Number,Full_Name,cartQuantity")] Order order)
         {
             if (ModelState.IsValid)
             {
@@ -112,6 +112,7 @@ namespace BabyInABag.Controllers
             //Pull Customer Id from the Session
             String customer_id = Session["currentid"].ToString();
 
+            //Creates 2 lists to contain all orders, and orders filtered down to customer
             List<Order> orders = db.Orders.ToList();
             List<Order> customer_orders = new List<Order>();
 
@@ -119,6 +120,7 @@ namespace BabyInABag.Controllers
             {
                 if(orders[i].Id == customer_id)
                 {
+                    //if order belongs to customer, add to list
                     customer_orders.Add(orders[i]);
                 }
             }
@@ -154,7 +156,10 @@ namespace BabyInABag.Controllers
             }
         }
 
-        
+        public ActionResult Payment()
+        {
+            return View();
+        }
 
         public string GenerateOrderNumber()
         {
