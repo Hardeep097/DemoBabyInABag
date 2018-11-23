@@ -459,6 +459,7 @@
     <Content Include="Views\DotNetReport\Dashboard.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Orders\CustomerOrders.cshtml" />
+    <Content Include="Views\Orders\CustomerOrderDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

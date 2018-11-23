@@ -1,0 +1,12 @@
+﻿@using BabyInABag.Models
+@using System.Configuration
+@model Order
+@{
+    ViewBag.Title = "CustomerOrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-first section-spacing">
+    <h2>Information</h2>
+    <h1>@Model.Order_Date_Placed</h1>
+</section>
