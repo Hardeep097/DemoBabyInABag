@@ -162,7 +162,10 @@ namespace BabyInABag.Controllers
             order.cartQuantity = "";
             order.Products = GetCartProducts(order);
             order.Order_Status = order_status.Submitted;
-            order.Order_Date_Placed = System.DateTime.Now;
+            var timeUtc = DateTime.UtcNow;
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            DateTime currentTime = TimeZoneInfo.ConvertTimeFromUtc(timeUtc, timeZoneInfo);
+            order.Order_Date_Placed = currentTime;
 
             if (ModelState.IsValid)
             {
