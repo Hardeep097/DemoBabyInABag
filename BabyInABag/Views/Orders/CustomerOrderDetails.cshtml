@@ -5,8 +5,123 @@
     ViewBag.Title = "CustomerOrderDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
 
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #7CB342;
+        color: white;
+    }
+</style>
 <section class="section-first section-spacing">
-    <h2>Information</h2>
-    <h1>@Model.Order_Date_Placed</h1>
+    <div class="main-contents">
+        <!-- Panel -->
+        <div class="main">
+            <font size="4">
+                <h2 id="admin-header-text">ORDER DETAILS</h2>
+                <hr>
+                <!-- Table Content Order ID and Account Information-->
+                <div>
+                    <table style="margin-bottom:10px">
+                        <tr>
+                            <th>Order Number #@Html.DisplayFor(model => model.Order_Number)</th>
+                            <th>Account Information</th>
+                        </tr>
+                        <tr>
+                            <td><p style="margin: 0px;">Order Date: @Html.DisplayFor(model => model.Order_Date_Placed) </p></td>
+                            <td>
+                                @{
+                                    var fullName = Model.Customer.FirstName + " " + Model.Customer.LastName;
+                                    <p style="margin: 0px;">Customer Name: @Html.DisplayFor(model => fullName)</p>
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Order Status:
+                                @Html.DisplayFor(model => model.Order_Status)
+                            </td>
+                            <td><p style="margin:0px;">Email: @Html.DisplayFor(model => model.Customer.Email)</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Table 2 Content Shipping Address and Invoice-->
+                <div>
+                    <table style="margin-bottom:10px">
+                        <tr>
+                            <th>Order Name</th>
+                            <th>Shipping Address</th>
+                        </tr>
+                        <tr>
+                            <td><p style="margin: 0px;">@Html.DisplayFor(model => model.Full_Name) </p></td>
+                            <td><p style="margin: 0px;">@Html.DisplayFor(model => model.Shipping_Address)</p></td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Table 3 Content Items -->
+                <div>
+                    <table style="margin-bottom:10px">
+                        <tr>
+                            <th>Items</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                        </tr>
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <td><p style="margin: 0px;">@Html.DisplayFor(modelItem => item.Product_Name)</p></td>
+
+                                @for (int i = 0; i < Model.productListing.Length; i++)
+                                {
+
+                                    if (Model.productListing[i] != "" || Model.productListing != null)
+                                    {
+
+                                        string[] prod = Model.productListing[i].Split(':');
+                                        string product_id = prod[0];
+                                        string product_quantity = prod[1];
+
+                                        if (product_id.Equals(item.Product_Id.ToString()))
+                                        {
+                                            <td>@Html.DisplayFor(model => product_quantity)</td>
+                                            break;
+                                        }
+
+                                    }
+
+                                }
+                                <td>@Html.DisplayFor(modelItem => item.Product_Price)</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <!-- Table 4 Content Total-->
+                <div>
+                    <table>
+                        <tr>
+                            <th>Order Total:</th>@Html.HiddenFor(model => model.Order_Total)
+                            <th>$@Html.DisplayFor(model => model.Order_Total)</th>
+                        </tr>
+                    </table>
+                </div>
+            </font>
+        </div>
+        <!-- End of Panel -->
+    </div>
 </section>

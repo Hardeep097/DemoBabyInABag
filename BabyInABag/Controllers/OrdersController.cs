@@ -117,15 +117,15 @@ namespace BabyInABag.Controllers
         }
 
         [Authorize(Roles ="Customer")]
-        public ActionResult CustomerOrderDetails(int? ids)
+        public ActionResult CustomerOrderDetails(int id)
         {
 
-            if (ids == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
             //Pull Customer Id from the Session
             String customer_id = Session["currentid"].ToString();
 
-            Order order = db.Orders.Find(ids);
+            Order order = db.Orders.Find(id);
 
             if (order == null)
             {
@@ -134,6 +134,8 @@ namespace BabyInABag.Controllers
 
             if(order.Id == customer_id)
             {
+                string list = order.cartQuantity;
+                order.productListing = list.Split('|');
                 return View(order);
             }
             else
@@ -162,7 +164,10 @@ namespace BabyInABag.Controllers
             order.cartQuantity = "";
             order.Products = GetCartProducts(order);
             order.Order_Status = order_status.Submitted;
-            order.Order_Date_Placed = System.DateTime.Now;
+            var timeUtc = DateTime.UtcNow;
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            DateTime currentTime = TimeZoneInfo.ConvertTimeFromUtc(timeUtc, timeZoneInfo);
+            order.Order_Date_Placed = currentTime;
 
             if (ModelState.IsValid)
             {
@@ -225,6 +230,7 @@ namespace BabyInABag.Controllers
                 ViewBag.OrderNumber = order.Order_Number;
 
                 ViewBag.status_message = "Your Payment was Successful!";
+                Session.Remove("cart");
 
             }
             else
