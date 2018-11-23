@@ -16,7 +16,7 @@
 
             <hr />
             <h2><b>Your order number is:</b></h2><p>@ViewBag.OrderNumber</p>
-            <p>To view your order, Please @Html.ActionLink("Click here", "", "", new { Style = "text-decoration: underline; color:Blue;" })</p>
+            <p>To view your order, Please @Html.ActionLink("Click here", "CustomerOrders", "Orders", new { Style = "text-decoration: underline; color:Blue;" })</p>
         </div>
         </section>
 </main>

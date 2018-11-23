@@ -23,57 +23,61 @@
                 @Html.HiddenFor(model => model.Default_Price);
                 @Html.HiddenFor(model => model.Default_Image);
 
-                <div class="w3-col w3-container m6 l7">
-                    <h2>@Html.DisplayFor(model => model.Product_Category)</h2>
-                    <p>Customize your own product to fit the needs of your baby, whether its a blanket, boots, or a sleeping bag.</p>
+            <div class="w3-col w3-container m6 l7">
+                <h2>@Html.DisplayFor(model => model.Product_Category)</h2>
+                <p>Customize your own product to fit the needs of your baby, whether its a blanket, boots, or a sleeping bag.</p>
 
-                    <h4 id="cprice">CAD @Html.DisplayFor(model => model.Default_Price)</h4>
-
-                    
-                            <h4>Quantity</h4>
-                            <select name="quantity">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                       
-                    <br>
+                <h4 id="cprice">CAD @Html.DisplayFor(model => model.Default_Price)</h4>
 
 
+                <h4>Quantity</h4>
+                <select name="quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+
+                <br>
+
+
+                <div>
+                    <h4>Color</h4>
                     <div>
-                        <h4>Color</h4>
-                        <div>
-                            <select name="color">
-                                <option value="Blue">Blue</option>
-                                <option value="Red">Red</option>
-                                <option value="Yellow">Yellow</option>
-                                <option value="Pink">Pink</option>
-                                <option value="Orange">Orange</option>
-                                <option value="Black">Black</option>
-                            </select>
-                        </div>
-
-                        <h4>Knitting Pattern</h4>
-                        <div>
-                            <select name="knit">
-                                <option value="Alder">Alder</option>
-                                <option value="Popcorn">Popcorn</option>
-                                <option value="Slip Stitch">Slip Stitch</option>
-                            </select>
-
-                        </div>
-
-                       
+                        <select name="color">
+                            <option value="Blue">Blue</option>
+                            <option value="Red">Red</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Pink">Pink</option>
+                            <option value="Orange">Orange</option>
+                            <option value="Black">Black</option>
+                        </select>
                     </div>
-                    <br />
-                    <h4>Additional Requirements</h4>
-                    <textarea name="additionalRequirements" rows="2" cols="19" style="resize:none; width:100%" placeholder="Enter any additional requirements you want for your customized product."></textarea>
-                    <br />
-                    <button id="buttoncustomize" type="submit">Save</button>
-                    <button id="buttoncustomize">Clear</button>
 
-                    @*<button id="buttoncart">@Html.ActionLink("Add to Cart", "Cart", "Cart", null, new { style = "text-decoration:none;" })</button>*@
+                    <h4>
+                        Knitting Pattern
+                        <i class="fa fa-info-circle" title="You can find the knitting pattern designs for this product on the FAQ page."></i>
+                    </h4>
+                    <div>
+                        <select name="knit">
+                            <option value="Popcorn">Popcorn</option>
+                        </select>
+
+                    </div>
+
+
                 </div>
+                <br />
+                <h4>
+                    Additional Requirements
+                    <i class="fa fa-info-circle" title="You can find the options for this product on the FAQ page."></i>
+                </h4>
+                <textarea name="additionalRequirements" rows="2" cols="19" style="resize:none; width:100%" placeholder="Enter any additional requirements you want for your customized product."></textarea>
+                <br />
+                <button id="buttoncustomize" type="submit">Save</button>
+                <button id="buttoncustomize">Clear</button>
+
+                @*<button id="buttoncart">@Html.ActionLink("Add to Cart", "Cart", "Cart", null, new { style = "text-decoration:none;" })</button>*@
+            </div>
             }
         </div>
     </main>
