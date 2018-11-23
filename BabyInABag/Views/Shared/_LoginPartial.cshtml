@@ -17,7 +17,7 @@
         if (Session["name"] != null)
         {
            
-            <div class="dropdown">
+            <div class="dropdown" style="border: 1px solid #111;">
                 <div onclick="myFunction()" class="dropbtn"> Hello @Session["name"].ToString()! <i class="fa fa-caret-down"></i></div>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="@Url.Action("Index", "Manage")">Profile Setting</a>
