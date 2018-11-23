@@ -41,6 +41,8 @@ namespace BabyInABag.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
 
+        public DbSet<Colors> Colors { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
