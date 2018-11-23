@@ -100,8 +100,8 @@ span.field-validation-error {
 /*dropdow start*/
 
 .dropbtn {
-    background-color: black;
-    color: white;
+    /*background-color: black;
+    color: white;*/
     padding: 16px;
     font-size: 14px;
     border: none;
@@ -1255,7 +1255,7 @@ a {
 
 .admin-top {
     top: 0;
-    height: 110px;
+    height: 100px;
 }
 
 .w3-bottom {
