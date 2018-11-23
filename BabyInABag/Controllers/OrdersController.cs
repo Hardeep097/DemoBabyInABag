@@ -117,15 +117,15 @@ namespace BabyInABag.Controllers
         }
 
         [Authorize(Roles ="Customer")]
-        public ActionResult CustomerOrderDetails(int? ids)
+        public ActionResult CustomerOrderDetails(int id)
         {
 
-            if (ids == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
 
             //Pull Customer Id from the Session
             String customer_id = Session["currentid"].ToString();
 
-            Order order = db.Orders.Find(ids);
+            Order order = db.Orders.Find(id);
 
             if (order == null)
             {
@@ -134,6 +134,8 @@ namespace BabyInABag.Controllers
 
             if(order.Id == customer_id)
             {
+                string list = order.cartQuantity;
+                order.productListing = list.Split('|');
                 return View(order);
             }
             else
