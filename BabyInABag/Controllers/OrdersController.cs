@@ -116,6 +116,33 @@ namespace BabyInABag.Controllers
             return View(customer_orders);
         }
 
+        [Authorize(Roles ="Customer")]
+        public ActionResult CustomerOrderDetails(int? ids)
+        {
+
+            if (ids == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
+
+            //Pull Customer Id from the Session
+            String customer_id = Session["currentid"].ToString();
+
+            Order order = db.Orders.Find(ids);
+
+            if (order == null)
+            {
+                return HttpNotFound();
+            }
+
+            if(order.Id == customer_id)
+            {
+                return View(order);
+            }
+            else
+            {
+                ViewBag.Scare = "Hey! Thats not your order! Your IP address has been logged.";
+                return View();
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public void Create(Order order)
@@ -135,7 +162,10 @@ namespace BabyInABag.Controllers
             order.cartQuantity = "";
             order.Products = GetCartProducts(order);
             order.Order_Status = order_status.Submitted;
-            order.Order_Date_Placed = System.DateTime.Now;
+            var timeUtc = DateTime.UtcNow;
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+            DateTime currentTime = TimeZoneInfo.ConvertTimeFromUtc(timeUtc, timeZoneInfo);
+            order.Order_Date_Placed = currentTime;
 
             if (ModelState.IsValid)
             {
@@ -143,8 +173,6 @@ namespace BabyInABag.Controllers
                 db.SaveChanges();
             }
         }
-
-       
 
         public string GenerateOrderNumber()
         {

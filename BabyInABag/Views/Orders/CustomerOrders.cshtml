@@ -16,20 +16,20 @@
     {
         <h2>Take a look at what you've bought!</h2>
         <table>
-            <th>Order Number</th>&nbsp;
-            <th>Placed Date</th>&nbsp;
-            <th>Products</th>&nbsp;
-            <th>Total Price</th>&nbsp;
-            <th>Status</th>
+            <th>@Html.DisplayNameFor(model => model.Order_Number)</th>&nbsp;
+            <th>@Html.DisplayNameFor(model => model.Order_Date_Placed)</th>&nbsp;
+            <th>@Html.DisplayNameFor(model => model.Order_Total)</th>&nbsp;
+            <th>@Html.DisplayNameFor(model => model.Order_Status)</th>
+            <th>Details</th>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.Order_Number</td>
-                    <td>@item.Order_Date_Placed</td>
-                    <td>@item.Products.Count()</td>
-                    <td>@item.Order_Total</td>
-                    <td>@item.Order_Status</td>
-                </tr>
+            <tr>
+                <td>@item.Order_Number</td>
+                <td>@item.Order_Date_Placed</td>
+                <td>@item.Order_Total</td>
+                <td>@item.Order_Status</td>
+                <td>@Html.ActionLink("View Order", "CustomerOrderDetails", "Orders", new { id = item.Order_Id }, null)</td>
+            </tr>
 
             }
         </table>
