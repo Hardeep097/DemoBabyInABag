@@ -1,0 +1,42 @@
+﻿@model BabyInABag.Models.Colors
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-contents">
+    <!-- Panel -->
+    <div class="main">
+
+        <h2>Details</h2>
+
+        <div>
+            <h4>Colors</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Color_Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Color_Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Color_HEX)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Color_HEX)
+                </dd>
+
+            </dl>
+        </div>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Color_Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+
+</div>
+</div>

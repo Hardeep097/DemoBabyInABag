@@ -221,6 +221,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ColorsController.cs" />
     <Compile Include="Controllers\DotNetReportController.cs" />
     <Compile Include="Controllers\DotNetSetupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -282,6 +283,10 @@
     <Compile Include="Migrations\201811231636423_coloradded.cs" />
     <Compile Include="Migrations\201811231636423_coloradded.Designer.cs">
       <DependentUpon>201811231636423_coloradded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811232004263_updatedtabase.cs" />
+    <Compile Include="Migrations\201811232004263_updatedtabase.Designer.cs">
+      <DependentUpon>201811232004263_updatedtabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -377,6 +382,7 @@
     <Content Include="Scripts\dotnetreport-helper.js" />
     <Content Include="Scripts\dotnetreport-setup.js" />
     <Content Include="Scripts\dotnetreport.min.js" />
+    <Content Include="Scripts\farbtastic.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -400,6 +406,7 @@
     <Content Include="Scripts\myscripts.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Styles\farbtastic.css" />
     <Content Include="Styles\style.css" />
     <Content Include="Styles\styleContent.css" />
     <Content Include="Styles\styleMain.css" />
@@ -465,6 +472,11 @@
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Orders\CustomerOrders.cshtml" />
     <Content Include="Views\Orders\CustomerOrderDetails.cshtml" />
+    <Content Include="Views\Colors\Create.cshtml" />
+    <Content Include="Views\Colors\Delete.cshtml" />
+    <Content Include="Views\Colors\Details.cshtml" />
+    <Content Include="Views\Colors\Edit.cshtml" />
+    <Content Include="Views\Colors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -522,6 +534,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811231636423_coloradded.resx">
       <DependentUpon>201811231636423_coloradded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811232004263_updatedtabase.resx">
+      <DependentUpon>201811232004263_updatedtabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
