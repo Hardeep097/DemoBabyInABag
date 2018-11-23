@@ -230,6 +230,7 @@ namespace BabyInABag.Controllers
                 ViewBag.OrderNumber = order.Order_Number;
 
                 ViewBag.status_message = "Your Payment was Successful!";
+                Session.Remove("cart");
 
             }
             else
