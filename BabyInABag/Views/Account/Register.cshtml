@@ -12,8 +12,8 @@
             {
 
                 @Html.AntiForgeryToken()
-                <h4>Create a new account.</h4>
-                <hr />
+                <h3>Customer Registration</h3>
+                <hr style="max-width:500px;" />
                 @Html.ValidationSummary("", new { @class = "text-danger" })
 
 
@@ -21,41 +21,42 @@
                 <div class="form-group">
 
                     <div>
-                        @Html.TextBoxFor(m => m.FirstName, new { @class = "w3-input w3-border", Style = "width:70%;height:20%", placeholder = "First Name" })
+                        @Html.TextBoxFor(m => m.FirstName, new { @class = "w3-input w3-border", Style = "width:70%;max-width:400px;height:20%", placeholder = "First Name" })
                     </div>
                 </div>
 
                 <div class="form-group">
 
                     <div>
-                        @Html.TextBoxFor(m => m.LastName, new { @class = "w3-input w3-border", Style = "width:70%;height:10%", placeholder = "Last Name" })
+                        @Html.TextBoxFor(m => m.LastName, new { @class = "w3-input w3-border", Style = "width:70%;max-width:400px;height:10%", placeholder = "Last Name" })
                     </div>
                 </div>
 
                 <div class="form-group">
 
                     <div>
-                        @Html.TextBoxFor(m => m.Email, new { @class = "w3-input w3-border", Style = "width:70%;height:10%", placeholder = "Email" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "w3-input w3-border", Style = "width:70%;max-width:400px;height:10%", placeholder = "Email" })
                     </div>
                 </div>
                 <div class="form-group">
 
                     <div>
-                        @Html.PasswordFor(m => m.Password, new { @class = "w3-input w3-border", Style = "width:70%;height:10%", placeholder = "Password" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "w3-input w3-border", Style = "width:70%;max-width:400px;height:10%", placeholder = "Password" })
                     </div>
                 </div>
                 <div class="form-group">
 
                     <div>
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "w3-input w3-border", Style = "width:70%; height:10%", placeholder = "Password" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "w3-input w3-border", Style = "width:70%;max-width:400px;height:10%", placeholder = "Password" })
                     </div>
                 </div>
                 <div class="form-group">
                     <div>
-                        <input type="submit" class="btn btn-default" value="Register" />
+                        <input type="submit" class="btn btn-dark" value="Register" />
                     </div>
                 </div>
             }
+            <hr style="max-width:500px;" />
         </section>
 
     </div>
