@@ -4,57 +4,57 @@
     ViewBag.Title = "Log in";
 }
 
-<h2>@ViewBag.Title.</h2>
+@*<h2>@ViewBag.Title.</h2>*@
 <main style="text-align:center">
     @*<div class="row">*@
         @*class="col-md-6"*@
         @*<div class="col-md-6">*@
-            <section id="loginForm" class="section-first section-spacing products">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
+    <section id="loginForm" class="section-first section-spacing products">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
 
-                    <h3>Login</h3>
-                    <hr />
+            <h3>Login</h3>
+            <hr style="max-width:500px;" />
 
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
 
-                        <div>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "w3-input w3-border", Style = "width:70%;", placeholder = "Email" })<br />
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
+                <div>
+                    @Html.TextBoxFor(m => m.Email, new { @class = "w3-input w3-border", Style = "width:70%;max-width:400px;", placeholder = "Email" })<br />
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div>
+                    @Html.PasswordFor(m => m.Password, new { @class = "w3-input w3-border", Style = "width:70%;max-width:400px;", placeholder = "Password" })<br />
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
                     </div>
-                    <div class="form-group">
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <input type="submit" value="Log in" class="btn btn-dark" />
+                </div>
+            </div>
+            <p>
+                @Html.ActionLink("Create Account", "Register")
+            </p>
 
-                        <div>
-                            @Html.PasswordFor(m => m.Password, new { @class = "w3-input w3-border", Style = "width:70%;", placeholder = "Password" })<br />
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <input type="submit" value="Log in" class="btn btn-default" />
-                        </div>
-                    </div>
-                    <p>
-                        @Html.ActionLink("Create Account", "Register")
-                    </p>
-
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>
-
-                }
-            </section>
+            <p>
+                @Html.ActionLink("Forgot your Password?", "ForgotPassword")
+            </p>
+        }
+        <hr style="max-width:500px;" />
+    </section>
         @*</div>*@
         @*<div class="col-md-4">
             <section id="socialLoginForm">
