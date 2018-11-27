@@ -18,19 +18,16 @@
 
 
             <!--        product 1-->
-            foreach (var item in Model)
+            @foreach (var item in Model)
             {
-            <div class="product-wrapper">
-                <div id="productDiv" class="w3-panel w3-border w3-round-xlarge" style="width: 70%">
-
-                    <div class="w3-row">
-
-                        <div class="w3-col w3-container m4 l3 ">
-                            <img id="image1" src="@item.Product_Image" alt="@item.Product_Image">
-                        </div>
+                <div class="product-wrapper">
+                    <div id="productDiv" class="w3-panel w3-border w3-round-xlarge" style="width: 70%">
+                        <div class="w3-row">
+                            <div class="w3-col w3-container m4 l3 ">
+                                <img id="image1" src="@item.Product_Image" alt="@item.Product_Image">
+                            </div>
                         <div class="w3-col w3-container m8 l9">
                             <h2>@Html.DisplayFor(modelItem => item.Product_Name)</h2>
-
                             <h4 class="details"><b>Details</b></h4>
                             <div class="description">
                                 <p><b>Knit Type:</b> @Html.DisplayFor(modelItem => item.Knit_Type) </p>
