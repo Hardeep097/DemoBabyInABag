@@ -10,29 +10,40 @@
 <section class="section-first section-spacing">
     @if (Model.Count() == 0)
     {
-        <h2>You haven't bought any of our products yet!</h2>
+        <section class="section-first section-spacing">
+            <div style="text-align:center;">
+                <img src="~/images/openbox.png" style="height:15%; width:15%;" />
+                <br />
+                <br />
+                <h1>You haven't placed an order yet!</h1>
+                <h4>Maybe you'll find something you like? @Html.ActionLink("Take a Look!", "Products", "Products")</h4>
+            </div>
+        </section>
     }
     else
     {
-        <h2>Take a look at what you've bought!</h2>
-        <table>
+        <div style="text-align:center">
+            <img src="~/images/unopenbox.png" style="height:15%; width:15%;" />
+        </div>       
+        <h2 style="text-align:center;">Thank you for choosing us!</h2>
+        <hr style="width:80%;" />
+        <table style="text-align:center;">
             <th>@Html.DisplayNameFor(model => model.Order_Number)</th>&nbsp;
             <th>@Html.DisplayNameFor(model => model.Order_Date_Placed)</th>&nbsp;
-            <th>@Html.DisplayNameFor(model => model.Order_Total)</th>&nbsp;
             <th>@Html.DisplayNameFor(model => model.Order_Status)</th>
             <th>Details</th>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>@item.Order_Number</td>
-                <td>@item.Order_Date_Placed</td>
-                <td>@item.Order_Total</td>
-                <td>@item.Order_Status</td>
-                <td>@Html.ActionLink("View Order", "CustomerOrderDetails", "Orders", new { id = item.Order_Id }, null)</td>
-            </tr>
+                <tr>
+                    <td>@item.Order_Number</td>
+                    <td>@item.Order_Date_Placed</td>
+                    <td>@item.Order_Status</td>
+                    <td>@Html.ActionLink("View Order", "CustomerOrderDetails", "Orders", new { id = item.Order_Id }, null)</td>
+                </tr>
 
             }
         </table>
+        <img />
     }
 </section>
 

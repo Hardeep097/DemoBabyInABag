@@ -32,23 +32,27 @@
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product_Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product_Price)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Product_Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Active)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", "Products", new { id = item.Product_Id }, null)
-                        </td>
-                    </tr>
+                    if (!item.Product_Name.Contains("Custom"))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product_Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product_Description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Products", new { id = item.Product_Id }, null)
+                            </td>
+                        </tr>
+                    }
+
                 }
             </table>
 
