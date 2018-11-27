@@ -2,7 +2,7 @@
 @if (this.User.IsInRole("Admin"))
 {
 
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Manage Account Setting";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 else
@@ -16,14 +16,14 @@ else
      <div class="main-contents">
         <!-- Panel -->
         <div class="main">
-            <h2 id="admin-header-text" style="border-bottom-color: black">Manage</h2>
+            <h2 id="admin-header-text" style="border-bottom-color: black">Manage Account Setting</h2>
             <div class="container" style=" text-align:center;font-size: 20px;">
                 <p class="text-success">@ViewBag.StatusMessage</p>
                 <hr />
                 <dl class="dl-horizontal">
-                    <dt>Password:</dt>
+                    <dt>Reset Password:</dt>
                     <dd>
-                        [
+                        
                         @if (Model.HasPassword)
                         {
                             @Html.ActionLink("Change your password", "ChangePassword")
@@ -32,7 +32,7 @@ else
                         {
                             @Html.ActionLink("Create", "SetPassword")
                         }
-                        ]
+                        
                     </dd>
                 </dl>
 
@@ -51,9 +51,9 @@ else
             <h4>Change your account settings</h4>
             <hr />
             <dl class="dl-horizontal">
-                <dt>Password:</dt>
+                <dt> Reset Password:</dt>
                 <dd>
-                    [
+                    
                     @if (Model.HasPassword)
                     {
                         @Html.ActionLink("Change your password", "ChangePassword")
@@ -62,7 +62,7 @@ else
                     {
                         @Html.ActionLink("Create", "SetPassword")
                     }
-                    ]
+                    
                 </dd>
                 @*<dt>External Logins:</dt>
                     <dd>

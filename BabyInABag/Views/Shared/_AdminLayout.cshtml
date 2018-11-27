@@ -35,7 +35,7 @@
     <div class="sidenav">
         <a>@Html.ActionLink("Orders", "Index", "Orders", null, new { style = "text-decoration:none;" })</a>
         <a>@Html.ActionLink("Reports", "Reports", "Admin", null, new { style = "text-decoration:none;" })</a>
-        <a></a>
+        @*<a></a>
         <button class="dropdown-btn">
             Products
             <i class="fa fa-caret-down"></i>
@@ -43,8 +43,11 @@
         <div class="dropdown-container">
             <a>@Html.ActionLink("Add Product", "AddProduct", "Admin", null, new { style = "text-decoration:none;" })</a>
             <a>@Html.ActionLink("Manage Products", "ManageProducts", "Admin", null, new { style = "text-decoration:none;" })</a>
-            <a>@Html.ActionLink("Manage Category", "Index", "ProductCategories", null, new { style = "text-decoration:none;" })</a>
-        </div>
+
+        </div>*@
+        <a>@Html.ActionLink("Products", "ManageProducts", "Admin", null, new { style = "text-decoration:none;" })</a>
+        <a>@Html.ActionLink("Categories", "Index", "ProductCategories", null, new { style = "text-decoration:none;" })</a>
+        <a>@Html.ActionLink("Colors", "Index", "Colors", null, new { style = "text-decoration:none;" })</a>
         <a>@Html.ActionLink("Accounts", "Accounts", "Admin", null, new { style = "text-decoration:none;" })</a>
     </div>
 

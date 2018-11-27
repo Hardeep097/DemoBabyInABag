@@ -103,7 +103,7 @@ namespace BabyInABag.Controllers
                                 Session["username"] = model.Email;
                                 Session["name"] = currentUser.FirstName;
 
-                                return RedirectToAction("Accounts", "Admin");
+                                return RedirectToAction("Index", "Orders");
 
 
                             }

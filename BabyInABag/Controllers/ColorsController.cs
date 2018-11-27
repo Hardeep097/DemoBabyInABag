@@ -10,6 +10,7 @@ using BabyInABag.Models;
 
 namespace BabyInABag.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ColorsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
