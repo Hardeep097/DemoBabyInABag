@@ -35,7 +35,9 @@
                         <th></th>
                     </tr>
 
-                    @foreach (var item in Model)
+                @foreach (var item in Model)
+                {
+                    if (!item.Product_Name.Contains("Custom"))
                     {
                         <tr>
                             <td>
@@ -55,11 +57,13 @@
                             </td>
                         </tr>
                     }
-                </table>
-            </div>
-            </div>
-            <!-- End of Panel -->
+
+                }
+            </table>
         </div>
+        </div>
+        <!-- End of Panel -->
+    </div>
     <!-- End of Contents -->
 
    
