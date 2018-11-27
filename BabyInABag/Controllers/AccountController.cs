@@ -12,7 +12,7 @@ using BabyInABag.Models;
 
 namespace BabyInABag.Controllers
 {
-    //COMMENT 
+    
     [Authorize]
     public class AccountController : Controller
     {
