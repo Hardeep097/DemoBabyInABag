@@ -50,11 +50,23 @@
             <hr style="width:80%" />
         </div>
         <div style="width:80%;padding-left:10%;">
-           <b style="font-size:18px;width:50%;float:left;">Sub-Total</b>
-            <b style="font-size:15px;width:50%;float:right;text-align:right;">@ViewBag.Subtotal</b>
+            <table style="width:100%;font-size:18px;">
+                <tr>
+                    <td><b>Sub-Total</b></td>
+                    <td align="right" style="font-size:15px;"><b>@ViewBag.Subtotal</b></td>
+                </tr>
+                <tr>
+                    <td><b>Shipping</b></td>
+                    <td align="right"><i class="fa fa-info-circle" style="font-size:15px;width:50%;float:right;text-align:right;" title="You can find the options for this product on the FAQ page."></i></td>
+                </tr>
+                @*<tr>
+                    <td colspan="2"><b>Standard Shipping ($5.00)</b></td>
+                </tr>*@
+                @*<tr>
+                    <td colspan="2" align="center">image here</td>
+                </tr>*@
+            </table>
         </div>
-
-
 
         <div id="buttonbox" style="text-align:center;width:100%;">
             <form action="@ConfigurationManager.AppSettings["urlSubmitPayment"]">
@@ -71,10 +83,10 @@
                     i++;
 
                 }
-                    <div style="width:100%;text-align:center;">
-                        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="4" height="4">
-                    </div>
+                <div style="width:100%;float:left;">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    @*<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="4" height="4">*@
+                </div>
             </form>
         </div>
     </div>

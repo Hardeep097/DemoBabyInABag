@@ -21,7 +21,7 @@
                 <table align="center">
                     <tr>
                         <td>
-                            @Html.LabelFor(model => model.Color_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <b>@Html.LabelFor(model => model.Color_Name, htmlAttributes: new { @class = "control-label col-md-2" }) </b>
 
                             @Html.EditorFor(model => model.Color_Name, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.Color_Name, "", new { @class = "text-danger" })
@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         <td>
-                            @Html.LabelFor(model => model.Color_HEX, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <b>  @Html.LabelFor(model => model.Color_HEX, htmlAttributes: new { @class = "control-label col-md-2" }) </b>
                             &nbsp;
                             @Html.EditorFor(model => model.Color_HEX, new { htmlAttributes = new { @class = "form-control", type = "color", value = "#ff0000" } })
 
@@ -38,11 +38,9 @@
                     </tr>
 
                     <tr>
-                        <td>
-
-
-
-                            <input type="submit" value="Create" class="btn btn-default" />
+                        <td style="text-align:center;">
+                            <br />
+                            <input type="submit" value="Create"  class="btn btn-dark" />
                         </td>
                     </tr>
                 </table>
