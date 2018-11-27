@@ -12,7 +12,9 @@
         <div class="main">
             <font size="4">
                 <h2 id="admin-header-text">ADD PRODUCT</h2>
-                <label id="admin-header-text" style="color:blue">@Html.ViewBag.psuccess</label>
+                <div style="text-align:center;">
+                    <label id="admin-header-text" style="color:black;">@Html.ViewBag.psuccess</label>
+                </div>
                 <hr>
                 @using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
