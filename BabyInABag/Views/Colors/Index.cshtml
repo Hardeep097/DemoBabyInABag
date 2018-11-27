@@ -8,13 +8,13 @@
 <div class="main-contents">
     <!-- Panel -->
     <div class="main">
-        <h2>Index</h2>
+        <h2>Man</h2>
 
         <p>
             @Html.ActionLink("Create New", "Create")
         </p>
-        <table class="table">
-            <tr>
+        <table class="w3-table" style="font-size:14px;">
+            <tr style="border-bottom: 1px solid black; font-size:16px;">
                 <th>
                     @Html.DisplayNameFor(model => model.Color_Name)
                 </th>
@@ -31,11 +31,11 @@
                         @Html.DisplayFor(modelItem => item.Color_Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Color_HEX)
+                        <input type="color" value=@item.Color_HEX  disabled="disabled"/>
+                        @*@Html.DisplayFor(modelItem => item.Color_HEX)*@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Color_Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Color_Id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.Color_Id })
                     </td>
                 </tr>

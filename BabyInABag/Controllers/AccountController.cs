@@ -12,6 +12,7 @@ using BabyInABag.Models;
 
 namespace BabyInABag.Controllers
 {
+    
     [Authorize]
     public class AccountController : Controller
     {
@@ -86,41 +87,44 @@ namespace BabyInABag.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    {
-                        var currentUser = UserManager.FindByEmail(model.Email);
-
-                        if (UserManager.IsInRole(currentUser.Id, "Admin"))
+           
+                switch (result)
+                {
+                    case SignInStatus.Success:
                         {
-                           Session["username"] = model.Email;
-                           Session["name"] = currentUser.FirstName;
+                            var currentUser = UserManager.FindByEmail(model.Email);
 
-                           return RedirectToAction("Accounts", "Admin");
+                            if (UserManager.IsInRole(currentUser.Id, "Admin"))
+                            {
+                                Session["username"] = model.Email;
+                                Session["name"] = currentUser.FirstName;
 
+                                return RedirectToAction("Accounts", "Admin");
+
+
+                            }
+                            else
+                            {
+                                Session["username"] = model.Email;
+                                Session["name"] = currentUser.FirstName;
+                                Session["currentid"] = currentUser.Id;
+
+                                return RedirectToLocal(returnUrl);
+                            }
 
                         }
-                        else
-                        {
-                            Session["username"] = model.Email;
-                            Session["name"] = currentUser.FirstName;
-                            Session["currentid"] = currentUser.Id;
-                            
-                            return RedirectToLocal(returnUrl);
-                        }
-                        
-                    }
-                    
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
+
+                    case SignInStatus.LockedOut:
+                        return View("Lockout");
+                    case SignInStatus.RequiresVerification:
+                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    case SignInStatus.Failure:
+                    default:
+                        ModelState.AddModelError("", "Invalid login attempt.");
+                        return View(model);
+                }
+
+            
         }
 
         //
@@ -185,7 +189,7 @@ namespace BabyInABag.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {  Email = model.Email, UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName};
+                var user = new ApplicationUser {  Email = model.Email, UserName = model.Email, FirstName = model.FirstName, LastName = model.LastName, IsEnabled=true};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

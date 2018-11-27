@@ -288,6 +288,10 @@
     <Compile Include="Migrations\201811232004263_updatedtabase.Designer.cs">
       <DependentUpon>201811232004263_updatedtabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811271618202_userisenable.cs" />
+    <Compile Include="Migrations\201811271618202_userisenable.Designer.cs">
+      <DependentUpon>201811271618202_userisenable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -475,7 +479,6 @@
     <Content Include="Views\Orders\CustomerOrderDetails.cshtml" />
     <Content Include="Views\Colors\Create.cshtml" />
     <Content Include="Views\Colors\Delete.cshtml" />
-    <Content Include="Views\Colors\Details.cshtml" />
     <Content Include="Views\Colors\Edit.cshtml" />
     <Content Include="Views\Colors\Index.cshtml" />
   </ItemGroup>
@@ -537,6 +540,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811232004263_updatedtabase.resx">
       <DependentUpon>201811232004263_updatedtabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811271618202_userisenable.resx">
+      <DependentUpon>201811271618202_userisenable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
