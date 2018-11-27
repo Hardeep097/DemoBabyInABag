@@ -6,7 +6,7 @@
 
 <!-- FAQ Section -->
 <main>
-    <div class="wrapper">
+    <div class="wrapper container" style="width:auto">
 
         @if (ViewBag.empty == null)
         {
@@ -14,59 +14,59 @@
         <section class="section-first section-spacing products">
             <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">Shopping Cart</h2>
             @Html.ActionLink("Continue Shopping", "Products", "Products")
-        </section>
-            
-           
+
+
+
             <!--        product 1-->
             foreach (var item in Model)
             {
-                <div class="product-wrapper">
-                    <div id="productDiv" class="w3-panel w3-border w3-round-xlarge" style="width: 70%">
+            <div class="product-wrapper">
+                <div id="productDiv" class="w3-panel w3-border w3-round-xlarge" style="width: 70%">
 
-                        <div class="w3-row">
+                    <div class="w3-row">
 
-                            <div class="w3-col w3-container m4 l3 ">
-                                <img id="image1" src="@item.Product_Image" alt="@item.Product_Image">
+                        <div class="w3-col w3-container m4 l3 ">
+                            <img id="image1" src="@item.Product_Image" alt="@item.Product_Image">
+                        </div>
+                        <div class="w3-col w3-container m8 l9">
+                            <h2>@Html.DisplayFor(modelItem => item.Product_Name)</h2>
+
+                            <h4 class="details"><b>Details</b></h4>
+                            <div class="description">
+                                <p><b>Knit Type:</b> @Html.DisplayFor(modelItem => item.Knit_Type) </p>
+                                <p><b>Color:</b> @Html.DisplayFor(modelItem => item.Color) </p>
+                                <p><b>Quantity:</b> @Html.DisplayFor(modelItem => item.Quantity) </p>
+                                @if (item.AdditionalRequirements != null)
+                                {
+                                    <p><b>Additional Requirements:</b> @Html.DisplayFor(modelItem => item.AdditionalRequirements) </p>
+                                }
+
                             </div>
-                            <div class="w3-col w3-container m8 l9">
-                                <h2>@Html.DisplayFor(modelItem => item.Product_Name)</h2>
-
-                                <h4 class="details"><b>Details</b></h4>
-                                <div class="description">
-                                    <p><b>Knit Type:</b> @Html.DisplayFor(modelItem => item.Knit_Type) </p>
-                                    <p><b>Color:</b> @Html.DisplayFor(modelItem => item.Color) </p>
-                                    <p><b>Quantity:</b> @Html.DisplayFor(modelItem => item.Quantity) </p>
-                                    @if (item.AdditionalRequirements != null)
-                                    {
-                                        <p><b>Additional Requirements:</b> @Html.DisplayFor(modelItem => item.AdditionalRequirements) </p>
-                                    }
-
-                                </div>
-                                <div id="pright">
-                                    <h4 id="cprice">$@Html.DisplayFor(modelItem => item.Product_Price)</h4>
-                                </div>
-
-                                <br />
-                                <button class="clear">@Html.ActionLink("Delete", "RemoveFromCart", "Cart", new { id = item.Product_Id }, new { style = "text-decoration:none;" })</button>
+                            <div id="pright">
+                                <h4 id="cprice">$@Html.DisplayFor(modelItem => item.Product_Price)</h4>
                             </div>
 
+                            <br />
+                            <button class="clear">@Html.ActionLink("Delete", "RemoveFromCart", "Cart", new { id = item.Product_Id }, new { style = "text-decoration:none;" })</button>
                         </div>
 
                     </div>
+
                 </div>
+            </div>
 
             }
             <div style="">
                 <p>@ViewBag.Subtotal</p>
             </div>
-            <div style="width:25%; text-align:center;float:right;">
+            <div style="width:25%; text-align:center;float:left;">
                 <button id="buttoncart">@Html.ActionLink("Check Out", "Checkout", "Orders", null, new { style = "text-decoration:none;" })</button>
             </div>
-
+        </section>
         }
         else
         {
-            <section class="section-first section-spacing products">
+            <section class="section-first section-spacing">
                 <div style="text-align:center;">
                     <img src="~/images/upsidecart.jpg" style="height:30%; width:30%;" />
                     <br/>
