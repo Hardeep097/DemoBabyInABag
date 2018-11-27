@@ -481,6 +481,7 @@
     <Content Include="Views\Colors\Delete.cshtml" />
     <Content Include="Views\Colors\Edit.cshtml" />
     <Content Include="Views\Colors\Index.cshtml" />
+    <Content Include="Views\Account\Disable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -152,7 +152,10 @@ namespace BabyInABag.Controllers
 
 
             //Check if Session Username is Empty, Redirect to Login Page if Empty
-            if (Session["username"] == null) { return RedirectToAction("Login", "Account", null); }
+            if (Session["username"] == null)
+            {
+               
+                return RedirectToAction("Login", "Account", null); }
 
             //Check if the Temporary Cart is Empty, If YES do Below
             if (TempData["cart"] == null)
