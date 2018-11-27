@@ -5,7 +5,7 @@ html body {
     font-family: monospace;
     position: relative;
     min-height: 100vh; /* will cover the 100% of viewport */
-    padding-bottom: 450px; /* height of your footer */
+    padding-bottom: 535px; /* height of your footer */
 }
 
 /*To reset some of the tags modified by Bootstrap*/
@@ -236,7 +236,7 @@ header .header-cart {
 .index-banner {
     margin-top: 62px;
     width: 100%;
-    height: calc(50vh - 200px);
+    /*height: calc(50vh - 200px);*/
     /*background-image: url('../images/banner1.png'); */
     background-repeat: no-repeat;
     background-position: center;
