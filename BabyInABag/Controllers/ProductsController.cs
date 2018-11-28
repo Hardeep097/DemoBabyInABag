@@ -199,9 +199,15 @@ namespace BabyInABag.Controllers
         //Customize section
         public ActionResult CustomizeProduct(int? id)
         {
+            var colors = db.Colors.ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if(colors != null)
+            {
+                ViewBag.colors = colors;
             }
 
             ProductCategory pc = db.ProductCategories.Find(id);
@@ -220,7 +226,7 @@ namespace BabyInABag.Controllers
                 Product_Price = pcat.Default_Price,
                 Product_Category_Id = pcat.Product_Category_Id,
                 Active = false,
-                Knit_Type = frm["knit"],
+                Knit_Type = "Popcorn",
                 Color = frm["color"],
                 Product_Image = pcat.Default_Image,
                 Quantity = Int32.Parse(frm["quantity"])
