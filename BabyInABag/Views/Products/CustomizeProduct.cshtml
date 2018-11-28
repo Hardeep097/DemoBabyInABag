@@ -27,11 +27,11 @@
                 <h2>@Html.DisplayFor(model => model.Product_Category)</h2>
                 <p>Customize your own product to fit the needs of your baby, whether its a blanket, boots, or a sleeping bag.</p>
 
-                <h4 id="cprice">CAD @Html.DisplayFor(model => model.Default_Price)</h4>
+                <h4 id="cprice">USD $@Html.DisplayFor(model => model.Default_Price)</h4>
 
 
                 <h4>Quantity</h4>
-                <select name="quantity">
+                <select name="quantity" style="width:13%;height:13%;">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>

@@ -191,7 +191,8 @@
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
-    width: 80%;
+    width: 35%;
+    float:right;
     /*     margin-left: 1%*/
 }
 

@@ -88,7 +88,7 @@ namespace BabyInABag.Controllers
                         }
                     }
                 }
-                ViewBag.Subtotal = "CDN$ " + subtotalPrice;
+                ViewBag.Subtotal = "USD $" + subtotalPrice;
                 return View(activeCart);
             }
             return View();

@@ -63,12 +63,12 @@
                                                     <h2>@Html.DisplayFor(modelItem => item2.Product_Name)</h2>
                                                     <p>@Html.DisplayFor(modelItem => item2.Product_Description)</p>
                                                     <div id="pright">
-                                                        <h4 id="cprice">CAD @Html.DisplayFor(modelItem => item2.Product_Price)</h4>
+                                                        <h4 id="cprice">USD @Html.DisplayFor(modelItem => item2.Product_Price)</h4>
                                                     </div>
 
                                                     <h4>Quantity</h4>
                                                     <input name="pid" value="@item2.Product_Id" type="hidden" />
-                                                    <select style="float:rightw;" name="quantity">
+                                                    <select style="width:20%; height:20%;" name="quantity">
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>

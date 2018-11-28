@@ -20,7 +20,7 @@ namespace BabyInABag
     {
         public async Task SendAsync(IdentityMessage message)
         {
-            string key = @"key here";
+            string key = @"Key here";
             var client = new SendGridClient(key);
             var from = new EmailAddress("spectzero8759@gmail.com", "BIAB");
 
