@@ -75,6 +75,7 @@
                         <input type="hidden" name="upload" value="1" />
                         <input type="hidden" name="return" value="@ConfigurationManager.AppSettings["urlReturn"]" />
                         <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["accountBusiness"]" />
+                        <input type="hidden" name="cc" value="CAD" />
                         @foreach (var item in Model)
                         {
                             <input type="hidden" name="@Url.Content("item_name_" + i)" value="@item.Product_Name" />
