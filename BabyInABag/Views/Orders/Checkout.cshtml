@@ -8,92 +8,92 @@
 }
 <main>
     <div class="wrapper container">
-        <section class="section-first section-spacing products">
+
+        <section class="section-first section-spacing">
             <div class="w3-container w3-padding-small">
                 <h2 class="w3-padding-16" style="text-align:center;">Checkout</h2>
             </div>
-        </section>
 
-        @{
-            int i = 1;
 
-        }
+            @{
+                int i = 1;
 
-    <div style="width:50%; float:left; margin:2%;">
-        <!--        product 1-->
-        @foreach (var item in Model)
-        {
-            <div id="productDiv" class="w3-panel w3-border w3-round-xlarge" style="width: 100%">
+            }
 
-                <div class="w3-row">
-
-                    <div class="w3-col w3-container m4 l3 ">
-                        <img id="image1" src="@item.Product_Image" alt="@item.Product_Image">
-                    </div>
-                    <div class="w3-col w3-container m8 l9">
-                        <h2>@Html.DisplayFor(modelItem => item.Product_Name)</h2>
-                        <p><b>Quantity:</b> @Html.DisplayFor(modelItem => item.Quantity)</p>
-
-                        <div id="pright">
-                            <h4 id="cprice">$@Html.DisplayFor(modelItem => item.Product_Price)</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-        
-    <div id="Right_Box" style="width:40%;height:100%;float:left;margin-top:2%; margin-left:1%;">
-
-        <div id="Total_Bar" style="width:100%;">
-            <h5 style="font-size:22px;padding-left:10%;"><b>Total</b></h5>
-            <hr style="width:80%" />
-        </div>
-        <div style="width:80%;padding-left:10%;">
-            <table style="width:100%;font-size:18px;">
-                <tr>
-                    <td><b>Sub-Total</b></td>
-                    <td align="right" style="font-size:15px;"><b>@ViewBag.Subtotal</b></td>
-                </tr>
-                <tr>
-                    <td><b>Shipping</b></td>
-                    <td align="right"><i class="fa fa-info-circle" style="font-size:15px;width:50%;float:right;text-align:right;" title="You can find the options for this product on the FAQ page."></i></td>
-                </tr>
-                @*<tr>
-                    <td colspan="2"><b>Standard Shipping ($5.00)</b></td>
-                </tr>*@
-                @*<tr>
-                    <td colspan="2" align="center">image here</td>
-                </tr>*@
-            </table>
-        </div>
-
-        <div id="buttonbox" style="text-align:center;width:100%;">
-            <form action="@ConfigurationManager.AppSettings["urlSubmitPayment"]">
-                <input type="hidden" name="cmd" value="_cart" />
-                <input type="hidden" name="upload" value="1" />
-                <input type="hidden" name="return" value="@ConfigurationManager.AppSettings["urlReturn"]" />
-                <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["accountBusiness"]" />
+            <div style="width:50%; float:left; margin:2%;">
+                <!-- product 1 -->
                 @foreach (var item in Model)
                 {
-                    <input type="hidden" name="@Url.Content("item_name_" + i)" value="@item.Product_Name" />
-                    <input type="hidden" name="@Url.Content("item_number_" + i)" value="@item.Product_Id" />
-                    <input type="hidden" name="@Url.Content("amount_" + i)" value="@item.Product_Price" />
-                    <input type="hidden" name="@Url.Content("quantity_" + i)" value="@item.Quantity" />
-                    i++;
+                    <div id="productDiv" class="w3-panel w3-border w3-round-xlarge" style="width: 100%">
 
+                        <div class="w3-row">
+
+                            <div class="w3-col w3-container m4 l3 ">
+                                <img id="image1" src="@item.Product_Image" alt="@item.Product_Image">
+                            </div>
+                            <div class="w3-col w3-container m8 l9">
+                                <h2>@Html.DisplayFor(modelItem => item.Product_Name)</h2>
+                                <p><b>Quantity:</b> @Html.DisplayFor(modelItem => item.Quantity)</p>
+
+                                <div id="pright">
+                                    <h4 id="cprice">$@Html.DisplayFor(modelItem => item.Product_Price)</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 }
-                <div style="width:100%;float:left;">
-                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-                    @*<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="4" height="4">*@
+            </div>
+
+            <div id="Right_Box" style="width:40%;height:100%;float:left;margin-top:2%; margin-left:1%;">
+
+                <div id="Total_Bar" style="width:100%;">
+                    <h5 style="font-size:22px;padding-left:10%;"><b>Total</b></h5>
+                    <hr style="width:80%" />
                 </div>
-            </form>
-        </div>
+                <div style="width:80%;padding-left:10%;">
+                    <table style="width:100%;font-size:18px;">
+                        <tr>
+                            <td><b>Sub-Total</b></td>
+                            <td align="right" style="font-size:15px;"><b>@ViewBag.Subtotal</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>Shipping</b></td>
+                            <td align="right"><i class="fa fa-info-circle" style="font-size:15px;width:50%;float:right;text-align:right;" title="You can find the options for this product on the FAQ page."></i></td>
+                        </tr>
+                        @*<tr>
+                        <td colspan="2"><b>Standard Shipping ($5.00)</b></td>
+                    </tr>*@
+                        @*<tr>
+                        <td colspan="2" align="center">image here</td>
+                    </tr>*@
+                    </table>
+                </div>
+                <br />
+                <div id="buttonbox" style="text-align:center;width:100%;">
+                    <form action="@ConfigurationManager.AppSettings["urlSubmitPayment"]">
+                        <input type="hidden" name="cmd" value="_cart" />
+                        <input type="hidden" name="upload" value="1" />
+                        <input type="hidden" name="return" value="@ConfigurationManager.AppSettings["urlReturn"]" />
+                        <input type="hidden" name="business" value="@ConfigurationManager.AppSettings["accountBusiness"]" />
+                        @foreach (var item in Model)
+                        {
+                            <input type="hidden" name="@Url.Content("item_name_" + i)" value="@item.Product_Name" />
+                            <input type="hidden" name="@Url.Content("item_number_" + i)" value="@item.Product_Id" />
+                            <input type="hidden" name="@Url.Content("amount_" + i)" value="@item.Product_Price" />
+                            <input type="hidden" name="@Url.Content("quantity_" + i)" value="@item.Quantity" />
+                            i++;
+
+                        }
+                        <div style="width:100%;float:left;">
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                            @*<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="4" height="4">*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
     </div>
-
-
-    </div>
-
 </main>
 
 
