@@ -44,16 +44,25 @@
                     <h4>Color</h4>
                     <div>
                         <select name="color">
-                            <option value="Blue">Blue</option>
-                            <option value="Red">Red</option>
-                            <option value="Yellow">Yellow</option>
-                            <option value="Pink">Pink</option>
-                            <option value="Orange">Orange</option>
-                            <option value="Black">Black</option>
+                            @foreach (var item in ViewBag.colors)
+                            {
+                                String name = item.Color_Name;
+                                String hex = item.Color_HEX;
+                                <option value=@name style="background-color:@hex;width:40px;">@name</option>
+                            }
                         </select>
                     </div>
 
-                   
+                    <h4>
+                        Knitting Pattern
+                        <i class="fa fa-info-circle" title="You can find the knitting pattern designs for this product on the FAQ page."></i>
+                    </h4>
+                    <div>
+                        <select name="knit">
+                            <option value="Popcorn">Popcorn</option>
+                        </select>
+
+                    </div>
 
 
                 </div>
@@ -66,47 +75,21 @@
                 <br />
                 <button id="buttoncustomize" type="submit">Save</button>
                 <button id="buttoncustomize">Clear</button>
-
-                @*<button id="buttoncart">@Html.ActionLink("Add to Cart", "Cart", "Cart", null, new { style = "text-decoration:none;" })</button>*@
             </div>
             }
         </div>
     </main>
 
         <script>
-
             $(document).ready(function () {
 
-                var quantitiy = 0;
-                $('.quantity-right-plus').click(function (e) {
-
-                    // Stop acting like a button
-                    e.preventDefault();
-                    // Get the field name
-                    var quantity = parseInt($('#quantity').val());
-
-                    // If is not undefined
-
-                    $('#quantity').val(quantity + 1);
-
-
-                    // Increment
-
-                });
-
-                $('.quantity-left-minus').click(function (e) {
-                    // Stop acting like a button
-                    e.preventDefault();
-                    // Get the field name
-                    var quantity = parseInt($('#quantity').val());
-
-                    // If is not undefined
-
-                    // Increment
-                    if (quantity > 0) {
-                        $('#quantity').val(quantity - 1);
-                    }
-                });
-
+                var colors = document.getElementById('color');
+                var selectedColor = document.getElementById('color').value;
+                var colorbox = document.getElementById('colorbox');
+                colors.onchange = function () {
+                    colorbox.css("background-color:", selectedColor);
+                }
+           
+            
             });
         </script>
