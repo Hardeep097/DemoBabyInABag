@@ -37,20 +37,7 @@
                             <td>
                                 <p style="margin: 0px;">Category</p>
 
-                                @*<input id="newchoice"
-                                       name="choice"
-                                       type="radio"
-                                       value="Create new"
-                                       style="width: 10%;height: 1em; margin-right:-10px" />
-                                <label>Create New</label>
-
-                                <input checked="checked"
-                                       id="existchoice"
-                                       name="choice"
-                                       type="radio"
-                                       value="Use existing"
-                                       style="width: 10%;height: 1em; margin-right:-10px" />
-                                <label>Use existing</label>*@
+                               
                                 <div id="dropd">
                                     @Html.DropDownList("Product_Category_Id", new SelectList(ViewBag.data, "Product_Category_Id", "Product_Category"))
                                 </div>
