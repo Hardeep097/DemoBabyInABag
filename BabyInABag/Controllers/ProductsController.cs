@@ -199,9 +199,15 @@ namespace BabyInABag.Controllers
         //Customize section
         public ActionResult CustomizeProduct(int? id)
         {
+            var colors = db.Colors.ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if(colors != null)
+            {
+                ViewBag.colors = colors;
             }
 
             ProductCategory pc = db.ProductCategories.Find(id);
