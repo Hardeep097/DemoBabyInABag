@@ -28,8 +28,15 @@
         else
         {
 
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            <div class="dropdown" style="border: 1px solid #111;margin-top:23px;margin-right:23px;">
+                <div onclick="myFunction()" class="dropbtn"> Hello <i class="fa fa-caret-down"></i></div>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="@Url.Action("Index", "Manage")">Profile Setting</a>
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                </div>
+            </div>
+            @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>*@
         }
 
 

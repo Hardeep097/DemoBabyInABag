@@ -5,6 +5,7 @@
 <head>
     <meta charset="utf-8">
     <title>Baby In A Bag</title>
+    <link rel="icon" href="~/images/knitting.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.png">
     <!-- Font Burger jQuery -->
@@ -55,7 +56,6 @@
             font-size: 16px;
             text-decoration: none;
             border: 1px solid #111;
-
             padding: 0 20px;
             line-height: 38px;
             cursor: pointer;
@@ -98,17 +98,16 @@
         }
 
         @@media only screen and (min-width: 1000px) { /*Desktop mode:overrides when condition meets*/
-    .dropdown {
-        float: right;
-    }
+            .dropdown {
+                float: right;
+            }
 
-    .dropbtn {
-        font-weight: 900;
-        margin-right: 10px;
-        margin-top: 30px;
-    }
-}
-
+            .dropbtn {
+                font-weight: 900;
+                margin-right: 10px;
+                margin-top: 30px;
+            }
+        }
     </style>
 </head>
 
@@ -152,9 +151,17 @@
                                 }
                                 else
                                 {
-
-                                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                    <a href="@Url.Action("Cart", "Cart")" class="header-cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+                                    <div class="dropdown">
+                                        <div onclick="myFunction()" class="dropbtn"> Hello ! <i class="fa fa-caret-down"></i></div>
+                                        <div id="myDropdown" class="dropdown-content">
+                                            <a href="@Url.Action("Index", "Manage")">Profile Setting</a>
+                                            <a href="@Url.Action("CustomerOrders","Orders")">Orders</a>
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                        </div>
+                                    </div>
+                                    @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>*@
 
                                 }
                             }
@@ -207,10 +214,10 @@
             </ul>
             <ul class="footer-social-media">
                 <a href="https://www.facebook.com/babyinabagbylola/" target="_blank">
-                    <img src="~/images/facebook-icon.png" alt="Facebook Icon" / >
+                    <img src="/images/facebook-icon183544733.png" alt="Facebook Icon" / >
                 </a>
                 <a href="https://www.instagram.com/babyinabag/" target="_blank">
-                    <img src="~/images/instagram-icon.png" alt="Instagram Icon" />
+                    <img src="/images/instagram-icon183601771.png" alt="Instagram Icon" />
                 </a>
             </ul>
         </div>

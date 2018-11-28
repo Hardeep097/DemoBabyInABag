@@ -4,7 +4,7 @@ html body {
     margin: 0%;
     font-family: monospace;
     position: relative;
-    min-height: 100vh; /* will cover the 100% of viewport */
+    min-height: 85vh; /* will cover the 100% of viewport */
     padding-bottom: 535px; /* height of your footer */
 }
 
@@ -61,7 +61,7 @@ section {
 
 @media only screen and (min-width: 1000px) {
     html body {
-        padding-bottom: 300px; /* height of your footer */
+        padding-bottom: 236px; /* height of your footer */
     }
 
     .section-first {
