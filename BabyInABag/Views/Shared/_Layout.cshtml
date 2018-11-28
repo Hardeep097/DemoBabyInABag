@@ -152,9 +152,17 @@
                                 }
                                 else
                                 {
-
-                                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                    <a href="@Url.Action("Cart", "Cart")" class="header-cart"><i class="fas fa-shopping-cart"></i> Cart</a>
+                                    <div class="dropdown">
+                                        <div onclick="myFunction()" class="dropbtn"> Hello ! <i class="fa fa-caret-down"></i></div>
+                                        <div id="myDropdown" class="dropdown-content">
+                                            <a href="@Url.Action("Index", "Manage")">Profile Setting</a>
+                                            <a href="@Url.Action("CustomerOrders","Orders")">Orders</a>
+                                            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                        </div>
+                                    </div>
+                                    @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>*@
 
                                 }
                             }

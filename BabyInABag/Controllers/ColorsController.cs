@@ -53,10 +53,11 @@ namespace BabyInABag.Controllers
             {
                 db.Colors.Add(colors);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.successcolor = "Created!";
+                //return RedirectToAction("Index");
             }
-
-            return View(colors);
+            ModelState.Clear();
+            return View();
         }
 
         // GET: Colors/Edit/5
