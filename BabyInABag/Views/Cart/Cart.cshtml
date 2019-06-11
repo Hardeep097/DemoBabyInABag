@@ -13,7 +13,7 @@
 
         <section class="section-first section-spacing products">
             <h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">Shopping Cart</h2>
-            
+
 
 
 
@@ -47,28 +47,31 @@
                                 <button class="clear">@Html.ActionLink("Remove", "RemoveFromCart", "Cart", new { id = item.Product_Id }, new { style = "text-decoration:none;" })</button>
                             </div>
 
-                    </div>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
 
             }
             <div style="">
                 <p>@ViewBag.Subtotal</p>
             </div>
             <br />
-            <div style="width:25%; text-align:center;">
-                <button id="buttoncart">@Html.ActionLink("Check Out", "Checkout", "Orders", null, new { style = "text-decoration:none;color:white;" })</button><b>OR</b> @Html.ActionLink("Continue Shopping", "Products", "Products")
+            <div style="width:25%; text-align:center; display:inline;">
+                @Html.ActionLink("Check Out", "Checkout", "Orders", null, new { style = "text-decoration:none;color:white;", ID = "buttoncart" })  @Html.ActionLink("Continue Shopping", "Products", "Products")
             </div>
+            <br />
+            <br />
         </section>
+            
         }
         else
         {
             <section class="section-first section-spacing">
                 <div style="text-align:center;">
                     <img src="~/images/upsidecart.jpg" style="height:30%; width:30%;" />
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                     <h1>Looks like there's nothing in here!</h1>
                     <h4>Maybe you'll find something you like? @Html.ActionLink("Take a Look!", "Products", "Products")</h4>
                 </div>
