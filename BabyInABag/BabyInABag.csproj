@@ -292,6 +292,10 @@
     <Compile Include="Migrations\201811271618202_userisenable.Designer.cs">
       <DependentUpon>201811271618202_userisenable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906121457049_new.cs" />
+    <Compile Include="Migrations\201906121457049_new.Designer.cs">
+      <DependentUpon>201906121457049_new.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -549,6 +553,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811271618202_userisenable.resx">
       <DependentUpon>201811271618202_userisenable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906121457049_new.resx">
+      <DependentUpon>201906121457049_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
