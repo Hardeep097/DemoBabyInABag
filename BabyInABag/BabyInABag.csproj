@@ -386,6 +386,8 @@
     <Content Include="Content\toastr.less" />
     <None Include="Properties\PublishProfiles\demo-babyinabag - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\demo-babyinabag - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\marketplace-demo - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\marketplace-demo - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\dotnetreport-helper.js" />
     <Content Include="Scripts\dotnetreport-setup.js" />
