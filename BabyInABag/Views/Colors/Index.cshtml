@@ -1,48 +1,42 @@
-﻿@model IEnumerable<BabyInABag.Models.Colors>
+﻿<!doctype html>
+<title>Site Maintenance</title>
+<style>
+    body {
+        text-align: center;
+        padding: 150px;
+    }
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
+    h1 {
+        font-size: 50px;
+    }
 
-<div class="main-contents">
-    <!-- Panel -->
-    <div class="main">
-        <h2 id="admin-header-text" style="border-bottom-color: black">Manage Colors</h2>
+    body {
+        font: 20px Helvetica, sans-serif;
+        color: #333;
+    }
 
-        <div class="container" style=" text-align:center;font-size: 20px;">
-            <p>
-                @Html.ActionLink("Create New Color", "Create")
-            </p>
-            <table class="w3-table" style="font-size:14px;">
-                <tr style="border-bottom: 1px solid black; font-size:16px;">
-                    <th>
-                        @Html.DisplayNameFor(model => model.Color_Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Color_HEX)
-                    </th>
-                    <th></th>
-                </tr>
+    article {
+        display: block;
+        text-align: left;
+        width: 650px;
+        margin: 0 auto;
+    }
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Color_Name)
-                        </td>
-                        <td>
-                            <input type="color" value=@item.Color_HEX disabled="disabled" />
-                            @*@Html.DisplayFor(modelItem => item.Color_HEX)*@
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Color_Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Color_Id })
-                        </td>
-                    </tr>
-                }
+    a {
+        color: #dc8100;
+        text-decoration: none;
+    }
 
-            </table>
-            </div>
-        </div>
+        a:hover {
+            color: #333;
+            text-decoration: none;
+        }
+</style>
+
+<article>
+    <h1>We&rsquo;ll be back soon!</h1>
+    <div>
+        <p>Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment. we&rsquo;ll be back online shortly!</p>
+        <p>&mdash; The Team</p>
     </div>
+</article>
