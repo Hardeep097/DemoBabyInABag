@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BabyInABag.Models.ProductCategory>
+﻿
+@model IEnumerable<BabyInABag.Models.ProductCategory>
 
 @{
     ViewBag.Title = "Index";
@@ -6,53 +7,53 @@
 }
 
 
-    <!-- Contents -->
-    <div class="main-contents">
-        <!-- Panel -->
-        <div class="main">
-            <h2 id="admin-header-text" style="border-bottom-color: black"> Manage Product Category</h2>
-            <div class="container" style=" text-align:center;font-size: 20px;">
+<!-- Contents -->
+<div class="main-contents">
+    <!-- Panel -->
+    <div class="main">
+        <h2 id="admin-header-text" style="border-bottom-color: black"> Manage Product Category</h2>
+        <div class="container" style=" text-align:center;font-size: 20px;">
 
-                <p>
-                    @Html.ActionLink("Create New Category", "Create")
-                </p>
-                <table class="w3-table" style="font-size:14px;">
-                    <tr style="border-bottom: 1px solid black; font-size:16px;">
-                        <th>
-                            @Html.DisplayNameFor(model => model.Product_Category)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Default_Price)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Active)
-                        </th>
-                        <th></th>
+            <p>
+                @Html.ActionLink("Create New Category", "Create")
+            </p>
+            <table class="w3-table" style="font-size:14px;">
+                <tr style="border-bottom: 1px solid black; font-size:16px;">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product_Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Default_Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Active)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product_Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Default_Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Active)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Product_Category_Id })
+                        </td>
                     </tr>
+                }
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Product_Category)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Default_Price)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Active)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Product_Category_Id })
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-
-            </div>
+            </table>
 
         </div>
-        <!-- End of Panel -->
+
     </div>
- 
+    <!-- End of Panel -->
+</div>
+
