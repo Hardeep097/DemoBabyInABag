@@ -1,4 +1,9 @@
-﻿<!doctype html>
+﻿@{
+    ViewBag.Title = "Accounts";
+    Layout = null;
+}
+
+<!doctype html>
 <title>Site Maintenance</title>
 <style>
     body {
